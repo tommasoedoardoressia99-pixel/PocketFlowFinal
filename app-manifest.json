@@ -1,0 +1,14 @@
+{
+  "edition": "public",
+  "branch": "codex/public/notebook-agent",
+  "slug": "notebook-agent",
+  "label": "Notebook / Moltbook Agent Template",
+  "component": "MoltbookAgentApp.tsx",
+  "generatedAt": "2026-07-18T14:24:56.577Z",
+  "sourceFiles": [
+    "src/components/MoltbookAgentApp.tsx",
+    "src/index.css",
+    "src/types.ts",
+    "src/utils/moltbookAgent.ts"
+  ]
+}
