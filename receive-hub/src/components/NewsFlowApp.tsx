@@ -525,7 +525,7 @@ const defaultNewsletterProfile = (): NewsletterProfile => ({
   intro: DEFAULT_NEWSLETTER_INTRO,
   sendTime: "00:00",
   sendTimes: ["00:00"],
-  fromAccount: "newsletter@example.com",
+  fromAccount: "newsletter-demo-account",
   crmList: `list:${PUBLIC_NEWS_LIST_ID}`,
   enabled: true,
   topCount: 10,
@@ -606,7 +606,7 @@ const defaultKapricornNewsletterProfile = (): NewsletterProfile => ({
   sendTimes: ["10:00"],
   sendWeekdays: [4],
   sendSchedule: [{ weekday: 4, time: "10:00" }],
-  fromAccount: "newsletter@example.com",
+  fromAccount: "newsletter-demo-account",
   crmList: `list:${KAPRI_NEWS_LIST_ID}`,
   enabled: false,
   topCount: 3,
@@ -651,7 +651,7 @@ const defaultPropertyDigestNewsletterProfile = (): NewsletterProfile => ({
   sendTimes: ["20:00"],
   sendWeekdays: [],
   sendSchedule: [],
-  fromAccount: "newsletter@example.com",
+  fromAccount: "newsletter-demo-account",
   crmList: `list:${PROPERTY_DIGEST_NEWS_LIST_ID}`,
   enabled: true,
   topCount: 10,
@@ -2912,11 +2912,11 @@ const matchesPublicAiInnovationBrief = (item: NewsItem) => {
 
 const crmEmailAccounts = () => {
   const base = [...ciaoCrmSeed.accounts];
-  if (!base.some((account) => account.address === "newsletter@example.com")) {
+  if (!base.some((account) => account.address === "newsletter-demo-account")) {
     base.push({
-      id: "newsletter@example.com",
-      label: "newsletter@example.com",
-      address: "newsletter@example.com",
+      id: "newsletter-demo-account",
+      label: "Newsletter demo account",
+      address: "newsletter-demo-account",
       provider: "Cia Cia Ciao CRM",
       imapHost: "mail.example.com",
       smtpHost: "mail.example.com",
@@ -7568,7 +7568,7 @@ export default function NewsFlowApp({ onNotify }: NewsFlowAppProps) {
                     <textarea
                       value={webhookPayloadText}
                       onChange={(event) => setWebhookPayloadText(event.target.value)}
-                      placeholder='Webhook test JSON: {"email":"reader@example.com","name":"Reader","tags":["site"]}'
+                      placeholder='Webhook test JSON: {"email":"reader-contact","name":"Reader","tags":["site"]}'
                       className="mt-3 min-h-[82px] w-full rounded-lg border border-[#c8bda5] bg-[#f6f0df] p-3 text-xs font-semibold leading-5 outline-none"
                     />
                     <button
@@ -7854,7 +7854,7 @@ export default function NewsFlowApp({ onNotify }: NewsFlowAppProps) {
                               <textarea
                                 value={bulkContactsText}
                                 onChange={(event) => setBulkContactsText(event.target.value)}
-                                placeholder='["person@example.com", {"name":"Name","email":"team@example.com"}]'
+                                placeholder='["person-contact", {"name":"Name","email":"team-contact"}]'
                                 className="mt-1 min-h-[82px] w-full rounded-lg border border-[#c8bda5] bg-[#f6f0df] p-3 text-xs font-semibold leading-5 outline-none"
                               />
                             </label>
