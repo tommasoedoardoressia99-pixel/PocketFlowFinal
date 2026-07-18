@@ -192,9 +192,12 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#07100c] text-white">
-      <div className="mx-auto flex min-h-screen w-full max-w-[1720px] flex-col px-0 lg:px-4">
-        <header className="sticky top-0 z-40 border-b border-emerald-300/15 bg-[#07100c]/95 px-4 py-3 backdrop-blur lg:rounded-b-[2rem]">
+    <div className="pf-public-preview-stage bg-[#07100c] text-white">
+      <div className="pf-public-phone-frame" aria-label="Android phone preview">
+        <div className="pf-public-phone-speaker" aria-hidden="true" />
+        <div className="pf-public-phone-screen">
+          <div className="flex h-full min-h-0 w-full flex-col bg-[#07100c]">
+        <header className="sticky top-0 z-40 border-b border-emerald-300/15 bg-[#07100c]/95 px-4 py-3 backdrop-blur">
           <div className="flex items-center justify-between gap-4">
             <div>
               <p className="text-[10px] font-black uppercase tracking-[0.32em] text-emerald-300">PocketFlowFinal</p>
@@ -229,7 +232,7 @@ export default function App() {
           </div>
         )}
 
-        <main className="flex min-h-0 flex-1 flex-col overflow-hidden lg:rounded-t-[2rem]">
+        <main className="flex min-h-0 flex-1 flex-col overflow-hidden">
           <Suspense fallback={<Loading />}>
             {currentApp === "systemmap" && <SystemMapApp onNotify={(message, type) => notify(message, type)} onOpenApp={(appId) => openPublicApp(appId)} />}
             {currentApp === "spino" && <SpinoLLMApp onNotify={(message, type) => notify(message, type)} onSystemAction={openPublicApp} />}
@@ -254,6 +257,8 @@ export default function App() {
             {currentApp === "www" && <WWWApp onNotify={(message, type) => notify(message, type)} onBack={() => setCurrentApp("systemmap")} />}
           </Suspense>
         </main>
+          </div>
+        </div>
       </div>
     </div>
   );

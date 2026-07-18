@@ -213,7 +213,7 @@ Private-only integrations have been removed by design.
 ```bash
 cd receive-hub
 npm install
-npm run dev
+npm run dev:phone
 ```
 
 Open:
@@ -221,6 +221,8 @@ Open:
 ```text
 http://127.0.0.1:3000
 ```
+
+The public preview is intentionally rendered inside an Android-phone frame on desktop browsers. On a real phone-sized viewport it expands to the full screen, matching the intended installation target.
 
 Useful checks:
 
