@@ -1,0 +1,14 @@
+{
+  "edition": "public",
+  "branch": "codex/public/web-monitor",
+  "slug": "web-monitor",
+  "label": "Web Monitor",
+  "component": "WWWApp.tsx",
+  "generatedAt": "2026-07-18T14:24:59.752Z",
+  "sourceFiles": [
+    "src/components/WWWApp.tsx",
+    "src/index.css",
+    "src/types.ts",
+    "src/utils/wwwDefaults.ts"
+  ]
+}
