@@ -1,0 +1,13 @@
+{
+  "edition": "public",
+  "branch": "codex/public/codex-relay",
+  "slug": "codex-relay",
+  "label": "Codex Relay",
+  "component": "RelayApp.tsx",
+  "generatedAt": "2026-07-18T14:24:57.185Z",
+  "sourceFiles": [
+    "src/components/RelayApp.tsx",
+    "src/index.css",
+    "src/types.ts"
+  ]
+}
