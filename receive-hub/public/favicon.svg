@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="PocketFlowFinal">
+  <rect width="64" height="64" rx="16" fill="#07100c"/>
+  <path d="M14 18h36v8H14zM14 30h36v8H14zM14 42h36v8H14z" fill="#47f2a8"/>
+  <circle cx="22" cy="22" r="3" fill="#f8b21c"/>
+  <circle cx="42" cy="34" r="3" fill="#f8b21c"/>
+  <circle cx="30" cy="46" r="3" fill="#f8b21c"/>
+</svg>

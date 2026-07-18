@@ -3,6 +3,8 @@
 .env
 .env.*
 *.log
+.playwright-cli/
+output/playwright/
 
 # Dependencies and generated builds are validated locally, not published.
 node_modules/

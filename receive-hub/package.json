@@ -58,5 +58,5 @@
     "typescript": "~5.8.2",
     "vite": "^6.2.3"
   },
-  "description": "Competition-safe public PocketFlow shell with private data removed."
+  "description": "Phone-first local AI operations shell for vibe-coding teams, with Builder, local LLM, NewsFlow, Archive, Relay and automation control surfaces."
 }

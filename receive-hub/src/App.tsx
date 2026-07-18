@@ -21,6 +21,7 @@ import type { ReceivedFile } from "./types";
 import type { PocketFlowAppId, SpinoSystemActionResult } from "./utils/spinoTools";
 import { getAllFiles, initDB, saveFileBlob, saveFileMetadata } from "./utils/storage";
 import { getFileExtension, sanitizeFileName } from "./utils/fileValidation";
+import { publicReleaseStateIsCurrent, resetPublicReleaseBrowserState } from "./utils/publicRelease";
 import "./index.css";
 
 const BuilderApp = lazy(() => import("./components/BuilderApp"));
@@ -152,8 +153,11 @@ export default function App() {
   const activeMeta = useMemo(() => apps.find((app) => app.id === currentApp) || apps[0], [currentApp]);
 
   useEffect(() => {
-    void initDB()
-      .then(getAllFiles)
+    void (async () => {
+      if (!publicReleaseStateIsCurrent()) await resetPublicReleaseBrowserState();
+      await initDB();
+      return getAllFiles();
+    })()
       .then(setFiles)
       .catch(() => setFiles([]));
   }, []);

@@ -269,7 +269,7 @@ const relayRouteInfo = (endpoint: string): { kind: RelayRouteKind; label: string
         remoteReady: false,
       };
     }
-    if (isMeshHost(host) || host.endsWith(".ts.net")) {
+    if (isMeshHost(host)) {
       return {
         kind: "vpn",
         label: "VPN remote",
