@@ -107,7 +107,7 @@ const candidateRelayEndpoints = () => {
     return `${window.location.protocol}//${window.location.hostname}:8788`;
   })();
   // The LAN relay is the fastest known path when phone and Mac share Wi-Fi.
-  // Saved Tailscale routes stay available, but must not make every scan wait
+  // Saved Secure Mesh routes stay available, but must not make every scan wait
   // for a stopped VPN before trying the reachable local relay.
   return Array.from(new Set([
     ...DEFAULT_RELAY_ENDPOINTS,
@@ -184,7 +184,7 @@ const SecondScreenApp = ({ onNotify }: SecondScreenAppProps) => {
   const [trustedHosts, setTrustedHosts] = useState<SecondScreenHost[]>(() => readTrustedHosts());
   const [detectedHosts, setDetectedHosts] = useState<SecondScreenHost[]>([]);
   const [selectedHostId, setSelectedHostId] = useState("");
-  const [lastScanMessage, setLastScanMessage] = useState("Connecting to the computer over USB, Wi-Fi and Tailscale...");
+  const [lastScanMessage, setLastScanMessage] = useState("Connecting to the computer over USB, Wi-Fi and Secure Mesh...");
   const [streamStatus, setStreamStatus] = useState<StreamStatus>("idle");
   const [requireApproval, setRequireApproval] = useState(true);
   const [localOnly, setLocalOnly] = useState(true);
@@ -203,7 +203,7 @@ const SecondScreenApp = ({ onNotify }: SecondScreenAppProps) => {
 
   const runDiscovery = async () => {
     setSessionState("DISCOVERING");
-    setLastScanMessage("Scanning saved relay, Tailscale and LAN routes...");
+    setLastScanMessage("Scanning saved relay, Secure Mesh and LAN routes...");
     onNotify?.("Second Screen is checking this computer and known relay routes.", "info");
     const token = localStorage.getItem(RELAY_TOKEN_KEY) || "";
     const foundHosts: SecondScreenHost[] = [];
@@ -251,7 +251,7 @@ const SecondScreenApp = ({ onNotify }: SecondScreenAppProps) => {
       ? `Computer not reachable on the current routes. Tried ${failures.slice(0, 3).join(" · ")}`
       : "No relay/display host routes are configured.",
     );
-    onNotify?.("The computer is not reachable on the current USB, Wi-Fi or Tailscale routes.", "warn");
+    onNotify?.("The computer is not reachable on the current USB, Wi-Fi or Secure Mesh routes.", "warn");
   };
 
   useEffect(() => {
@@ -313,7 +313,7 @@ const SecondScreenApp = ({ onNotify }: SecondScreenAppProps) => {
     setSelectedHostId("");
     setStreamStatus("idle");
     setSessionState("IDLE");
-    setLastScanMessage("Connecting to the computer over USB, Wi-Fi and Tailscale...");
+    setLastScanMessage("Connecting to the computer over USB, Wi-Fi and Secure Mesh...");
     onNotify?.("Second Screen trusted hosts cleared.", "success");
   };
 
@@ -495,7 +495,7 @@ const SecondScreenApp = ({ onNotify }: SecondScreenAppProps) => {
             <div>
               <div className="text-[8px] font-mono font-black uppercase tracking-[0.24em] text-amber-200">USB-C reality check</div>
               <p className="mt-2 text-xs leading-5 text-amber-50/80">
-                Type-C can carry data, charging, and sometimes display-out. It is not normally HDMI/display-in for a phone. For cable video-in we need UVC HDMI capture hardware, or we use a PocketFlow Display Host stream over USB/Wi-Fi/Tailscale.
+                Type-C can carry data, charging, and sometimes display-out. It is not normally HDMI/display-in for a phone. For cable video-in we need UVC HDMI capture hardware, or we use a PocketFlow Display Host stream over USB/Wi-Fi/Secure Mesh.
               </p>
             </div>
           </div>

@@ -296,7 +296,7 @@ const NEWSLETTER_SEND_ATTEMPTS_KEY = "pocketflow.news.newsletterSendAttempts.v1"
 const NEWSLETTER_HEALTH_KEY = "pocketflow.news.newsletterHealth.v1";
 const NEWSLETTER_AUTOMATION_LOCK_KEY = "pocketflow.news.newsletterAutomationLock.v1";
 const NEWSLETTER_PROFILE_REPAIR_KEY = "pocketflow.news.newsletterProfileRepair.v1";
-const NEWSLETTER_PROFILE_REPAIR_VERSION = "2026-07-06-single-fashion-tanuki-night";
+const NEWSLETTER_PROFILE_REPAIR_VERSION = "2026-07-06-single-fashion-public-night";
 const KAPRICORN_PAUSE_REPAIR_KEY = "pocketflow.news.kapricornPauseRepair.v1";
 const KAPRICORN_PAUSE_REPAIR_VERSION = "2026-07-16-kapricorn-parked-all-schedulers";
 const NEWSLETTER_CONTACT_REPAIR_KEY = "pocketflow.news.newsletterContactRepair.v1";
@@ -344,17 +344,17 @@ const NEWS_DISABLED_SOURCE_IDS = new Set(["lastampa", "la-stampa"]);
 const NEWS_SCOUTER_JOB_IDS = ["news-scouter-ai", "news-scouter-fashion"];
 
 const DEFAULT_NEWSLETTER_INTRO =
-  "Dear Tanuki AI lovers, here is today's selected briefing. The date and top stories are generated automatically from News Flow, then you can edit before sending.";
+  "Dear Public AI lovers, here is today's selected briefing. The date and top stories are generated automatically from News Flow, then you can edit before sending.";
 
 const DEFAULT_NEWSLETTER_SIGNATURE =
-  "Tanuki Team\nPocketFlow Press";
+  "Public Team\nPocketFlow Press";
 
 const DEFAULT_NEWSLETTER_FOOTPRINT =
   "example.com";
 
 const DEFAULT_NEWSLETTER_FONT = "Arial, sans-serif";
-const TANUKI_TOPIC_FILTERS = ["ai", "ai-labs", "ai-research"];
-const TANUKI_CUSTOM_INTERESTS = [
+const PUBLIC_TOPIC_FILTERS = ["ai", "ai-labs", "ai-research"];
+const PUBLIC_CUSTOM_INTERESTS = [
   "artificial intelligence",
   "AI agents",
   "AI software",
@@ -368,13 +368,13 @@ const TANUKI_CUSTOM_INTERESTS = [
   "software innovation",
   "research labs",
 ];
-const TANUKI_ALLOWED_SOURCE_IDS = new Set([
+const PUBLIC_ALLOWED_SOURCE_IDS = new Set([
   "ai-labs",
   "wired-ai",
   "tech-ai",
   "ai-innovation",
 ]);
-const TANUKI_BLOCKED_TOPICS = new Set<NewsTopic>([
+const PUBLIC_BLOCKED_TOPICS = new Set<NewsTopic>([
   "italy",
   "politics",
   "local",
@@ -388,7 +388,7 @@ const TANUKI_BLOCKED_TOPICS = new Set<NewsTopic>([
   "alcohol",
   "parties",
 ]);
-const TANUKI_ALLOWED_TERMS = [
+const PUBLIC_ALLOWED_TERMS = [
   "ai",
   "artificial intelligence",
   "intelligenza artificiale",
@@ -418,7 +418,7 @@ const TANUKI_ALLOWED_TERMS = [
   "model release",
   "builder intelligence",
 ];
-const TANUKI_BLOCKED_TERMS = [
+const PUBLIC_BLOCKED_TERMS = [
   "politica",
   "politics",
   "governo",
@@ -440,7 +440,7 @@ const TANUKI_BLOCKED_TERMS = [
   "cocktail",
   "bar",
 ];
-const TANUKI_NEWSLETTER_THEME = {
+const PUBLIC_NEWSLETTER_THEME = {
   pageBg: "#f6f0df",
   shellBg: "#fffaf0",
   cardBg: "#ffffff",
@@ -455,7 +455,7 @@ const TANUKI_NEWSLETTER_THEME = {
   font: "Arial, Helvetica, sans-serif",
 };
 const SECOND_LIFE_LOGO_FALLBACK_SRC = "/brand/second-life-studio-logo.jpg";
-const TANUKI_NEWS_LIST_ID = "tanuki_news";
+const PUBLIC_NEWS_LIST_ID = "public_news";
 const SECOND_LIFE_NEWS_LIST_ID = "second_life_news";
 const KAPRI_NEWS_LIST_ID = "kapri_news";
 const PROPERTY_DIGEST_NEWS_LIST_ID = "news-lago";
@@ -463,7 +463,7 @@ const PROPERTY_DIGEST_NEWSLETTER_PROFILE_ID = "newsletter_ricerca_casa_al_lago";
 const ITALY_MOBILITY_NEWS_LIST_ID = "italy_mobility_strikes";
 const ITALY_MOBILITY_NEWSLETTER_PROFILE_ID = "newsletter_italy_mobility_strikes_weekly";
 const NEWSLETTER_PROFILE_JOB_IDS: Record<string, string> = {
-  newsletter_tanuki_ai_daily: "newsletter-tanuki-midnight",
+  newsletter_public_ai_daily: "newsletter-public-midnight",
   newsletter_second_life_fashion_daily: "newsletter-secondlife-18",
   [PROPERTY_DIGEST_NEWSLETTER_PROFILE_ID]: "newsletter-lakehouse-20",
   newsletter_kapricorn_leaflet: "newsletter-kapricorn-thu-10",
@@ -515,31 +515,31 @@ const NEWSLETTER_FONT_OPTIONS = [
 ];
 
 const defaultNewsletterProfile = (): NewsletterProfile => ({
-  id: "newsletter_tanuki_ai_daily",
-  name: "Tanuki AI",
+  id: "newsletter_public_ai_daily",
+  name: "Public AI",
   topicFilter: "ai",
-  topicFilters: TANUKI_TOPIC_FILTERS,
-  customInterests: TANUKI_CUSTOM_INTERESTS,
+  topicFilters: PUBLIC_TOPIC_FILTERS,
+  customInterests: PUBLIC_CUSTOM_INTERESTS,
   cadence: "daily",
-  title: "Tanuki AI Daily Brief",
+  title: "Public AI Daily Brief",
   intro: DEFAULT_NEWSLETTER_INTRO,
   sendTime: "00:00",
   sendTimes: ["00:00"],
   fromAccount: "newsletter@example.com",
-  crmList: `list:${TANUKI_NEWS_LIST_ID}`,
+  crmList: `list:${PUBLIC_NEWS_LIST_ID}`,
   enabled: true,
   topCount: 10,
-  templateName: "Tanuki Labs AI software house template",
+  templateName: "PocketFlow Studio AI software house template",
   logoDataUrl: "",
-  signature: "Tanuki Labs\nPocketFlow Press",
+  signature: "PocketFlow Studio\nPocketFlow Press",
   footprint: DEFAULT_NEWSLETTER_FOOTPRINT,
-  headerBgColor: TANUKI_NEWSLETTER_THEME.headerBg,
-  headerTextColor: TANUKI_NEWSLETTER_THEME.text,
-  footerBgColor: TANUKI_NEWSLETTER_THEME.headerBg,
-  footerTextColor: TANUKI_NEWSLETTER_THEME.gold,
-  accentColor: TANUKI_NEWSLETTER_THEME.gold,
-  bodyBgColor: TANUKI_NEWSLETTER_THEME.pageBg,
-  fontFamily: TANUKI_NEWSLETTER_THEME.font,
+  headerBgColor: PUBLIC_NEWSLETTER_THEME.headerBg,
+  headerTextColor: PUBLIC_NEWSLETTER_THEME.text,
+  footerBgColor: PUBLIC_NEWSLETTER_THEME.headerBg,
+  footerTextColor: PUBLIC_NEWSLETTER_THEME.gold,
+  accentColor: PUBLIC_NEWSLETTER_THEME.gold,
+  bodyBgColor: PUBLIC_NEWSLETTER_THEME.pageBg,
+  fontFamily: PUBLIC_NEWSLETTER_THEME.font,
 });
 
 const defaultFashionNewsletterProfile = (): NewsletterProfile => ({
@@ -1860,7 +1860,7 @@ const newsletterJobFromProfile = (
     dailyAt: time,
     weekdays,
     failureCount: 0,
-    priority: normalized.id === "newsletter_tanuki_ai_daily" ? 35 : 30,
+    priority: normalized.id === "newsletter_public_ai_daily" ? 35 : 30,
     lastMessage: enabled
       ? `${agent.agentId} owns send slot ${time} for ${normalized.name}.`
       : `${agent.agentId} is parked; ${normalized.name} will not send automatically.`,
@@ -2725,10 +2725,10 @@ const matchesResearchFilter = (item: NewsItem, filterId: string) => {
   return filter.terms.some((term) => hasSearchTerm(haystack, term));
 };
 
-const isTanukiNewsletterProfile = (profile: Pick<NewsletterProfile, "id" | "name" | "title" | "topicFilters">) =>
-  profile.id === "newsletter_tanuki_ai_daily" ||
-  /tanuki/i.test(`${profile.name || ""} ${profile.title || ""}`) ||
-  (Array.isArray(profile.topicFilters) && profile.topicFilters.some((topic) => TANUKI_TOPIC_FILTERS.includes(topic)));
+const isPublicNewsletterProfile = (profile: Pick<NewsletterProfile, "id" | "name" | "title" | "topicFilters">) =>
+  profile.id === "newsletter_public_ai_daily" ||
+  /public/i.test(`${profile.name || ""} ${profile.title || ""}`) ||
+  (Array.isArray(profile.topicFilters) && profile.topicFilters.some((topic) => PUBLIC_TOPIC_FILTERS.includes(topic)));
 
 const isPropertyDigestNewsletterProfile = (profile: Pick<NewsletterProfile, "id" | "name" | "title" | "templateName">) =>
   profile.id === PROPERTY_DIGEST_NEWSLETTER_PROFILE_ID ||
@@ -2902,12 +2902,12 @@ const selectPropertyDigestNewsletterItems = (profile: NewsletterProfile) => {
 const isPropertyDigestNewsletterItem = (item: NewsItem): item is PropertyDigestNewsletterItem =>
   Boolean((item as Partial<PropertyDigestNewsletterItem>).propertyDigest);
 
-const matchesTanukiAiInnovationBrief = (item: NewsItem) => {
-  if (TANUKI_BLOCKED_TOPICS.has(item.topic)) return false;
-  if (!TANUKI_ALLOWED_SOURCE_IDS.has(item.sourceId) && item.topic !== "ai") return false;
+const matchesPublicAiInnovationBrief = (item: NewsItem) => {
+  if (PUBLIC_BLOCKED_TOPICS.has(item.topic)) return false;
+  if (!PUBLIC_ALLOWED_SOURCE_IDS.has(item.sourceId) && item.topic !== "ai") return false;
   const haystack = searchableNewsText(item);
-  if (TANUKI_BLOCKED_TERMS.some((term) => hasSearchTerm(haystack, term))) return false;
-  return TANUKI_ALLOWED_TERMS.some((term) => hasSearchTerm(haystack, term));
+  if (PUBLIC_BLOCKED_TERMS.some((term) => hasSearchTerm(haystack, term))) return false;
+  return PUBLIC_ALLOWED_TERMS.some((term) => hasSearchTerm(haystack, term));
 };
 
 const crmEmailAccounts = () => {
@@ -2944,7 +2944,7 @@ const defaultNewsletterContactLists = (): NewsletterContactList[] => {
     updatedAt: now,
   });
   return [
-    makeList(TANUKI_NEWS_LIST_ID, "Tanuki list", "Public template audience. Add your own contacts locally."),
+    makeList(PUBLIC_NEWS_LIST_ID, "Public AI list", "Public template audience. Add your own contacts locally."),
     makeList(SECOND_LIFE_NEWS_LIST_ID, "Second Life", "Public template fashion audience."),
     makeList(KAPRI_NEWS_LIST_ID, "Kapri List", "Public template campaign audience."),
     makeList(PROPERTY_DIGEST_NEWS_LIST_ID, "Property Digest", "Public template property audience."),
@@ -2952,9 +2952,9 @@ const defaultNewsletterContactLists = (): NewsletterContactList[] => {
   ];
 };
 
-const repairTanukiNewsletterContacts = (list: NewsletterContactList) => {
+const repairPublicNewsletterContacts = (list: NewsletterContactList) => {
   if (PUBLIC_RELEASE_MODE) return list;
-  if (list.id !== TANUKI_NEWS_LIST_ID) return list;
+  if (list.id !== PUBLIC_NEWS_LIST_ID) return list;
   const targetEmailKey = PUBLIC_TEMPLATE_NEWS_CONTACT.email.toLowerCase();
   const legacyEmailKeys = new Set(PUBLIC_TEMPLATE_LEGACY_EMAILS.map((email) => email.toLowerCase()));
   let changed = false;
@@ -3012,16 +3012,16 @@ const normalizeNewsletterContactLists = (lists: NewsletterContactList[]) => {
       byId.set(fallback.id, fallback);
       continue;
     }
-    if (fallback.id === TANUKI_NEWS_LIST_ID && existing.name === "Tanuki News") {
+    if (fallback.id === PUBLIC_NEWS_LIST_ID && existing.name === "Public AI News") {
       byId.set(fallback.id, {
         ...existing,
-        name: "Tanuki list",
+        name: "Public AI list",
         contacts: mergeNewsletterContacts(existing.contacts || [], fallback.contacts),
         updatedAt: new Date().toISOString(),
       });
       continue;
     }
-    if ([TANUKI_NEWS_LIST_ID, SECOND_LIFE_NEWS_LIST_ID, KAPRI_NEWS_LIST_ID, PROPERTY_DIGEST_NEWS_LIST_ID, ITALY_MOBILITY_NEWS_LIST_ID].includes(fallback.id)) {
+    if ([PUBLIC_NEWS_LIST_ID, SECOND_LIFE_NEWS_LIST_ID, KAPRI_NEWS_LIST_ID, PROPERTY_DIGEST_NEWS_LIST_ID, ITALY_MOBILITY_NEWS_LIST_ID].includes(fallback.id)) {
       byId.set(fallback.id, {
         ...existing,
         contacts: mergeNewsletterContacts(existing.contacts || [], fallback.contacts),
@@ -3029,7 +3029,7 @@ const normalizeNewsletterContactLists = (lists: NewsletterContactList[]) => {
       });
     }
   }
-  const repairedLists = Array.from(byId.values()).map(repairTanukiNewsletterContacts);
+  const repairedLists = Array.from(byId.values()).map(repairPublicNewsletterContacts);
   localStorage.setItem(NEWSLETTER_CONTACT_REPAIR_KEY, NEWSLETTER_CONTACT_REPAIR_VERSION);
   return repairedLists;
 };
@@ -3175,7 +3175,7 @@ const normalizeNewsletterProfile = (profile: Partial<NewsletterProfile>): Newsle
     sendTimes: effectiveSendTimes,
     sendWeekdays,
     sendSchedule,
-    crmList: oldCrmSelection ? `list:${TANUKI_NEWS_LIST_ID}` : next.crmList,
+    crmList: oldCrmSelection ? `list:${PUBLIC_NEWS_LIST_ID}` : next.crmList,
     fontFamily: next.fontFamily || DEFAULT_NEWSLETTER_FONT,
   };
 };
@@ -3185,12 +3185,12 @@ const canonicalNewsletterProfile = (profile: NewsletterProfile): NewsletterProfi
   const isItalyMobility = profile.id === ITALY_MOBILITY_NEWSLETTER_PROFILE_ID || identity.includes("mobility") || identity.includes("scioper");
   const isKapricorn = profile.id === "newsletter_kapricorn_leaflet" || identity.includes("kapricorn") || identity.includes("bar weekly");
   const isFashion = profile.id === "newsletter_second_life_fashion_daily" || identity.includes("second life") || identity.includes("fashion");
-  const isTanuki = profile.id === "newsletter_tanuki_ai_daily" || identity.includes("tanuki") || identity.includes("ai daily") || identity.includes("ai brief");
+  const isPublic = profile.id === "newsletter_public_ai_daily" || identity.includes("public") || identity.includes("ai daily") || identity.includes("ai brief");
 
   if (isItalyMobility) return normalizeNewsletterProfile({ ...defaultItalyMobilityNewsletterProfile(), ...profile });
   if (isKapricorn) return normalizeNewsletterProfile({ ...defaultKapricornNewsletterProfile(), ...profile });
   if (isFashion) return normalizeNewsletterProfile({ ...defaultFashionNewsletterProfile(), ...profile });
-  if (isTanuki) return normalizeNewsletterProfile({ ...defaultNewsletterProfile(), ...profile });
+  if (isPublic) return normalizeNewsletterProfile({ ...defaultNewsletterProfile(), ...profile });
   return normalizeNewsletterProfile(profile);
 };
 
@@ -3198,9 +3198,9 @@ const normalizeNewsletterProfiles = (profiles: NewsletterProfile[]) => {
   const normalized = profiles.map(normalizeNewsletterProfile);
   const upgraded = normalized.map((profile) => {
     const isLegacyAi =
-      profile.id === "newsletter_tanuki_ai_daily" ||
+      profile.id === "newsletter_public_ai_daily" ||
       profile.name === "Daily AI Brief" ||
-      profile.title === "Tanuki AI Daily Brief";
+      profile.title === "Public AI Daily Brief";
     const isFashion =
       profile.id === "newsletter_second_life_fashion_daily" ||
       /second life/i.test(profile.name || "") ||
@@ -3314,14 +3314,14 @@ const normalizeNewsletterProfiles = (profiles: NewsletterProfile[]) => {
     }
     if (isFashion) {
       const fallback = defaultFashionNewsletterProfile();
-      const title = !profile.title || /tanuki ai/i.test(profile.title) ? fallback.title : profile.title;
+      const title = !profile.title || /public ai/i.test(profile.title) ? fallback.title : profile.title;
       return {
         ...fallback,
         ...profile,
         id: fallback.id,
         name: fallback.name,
         title,
-        intro: profile.intro && !/Tanuki AI lovers/i.test(profile.intro) ? profile.intro : fallback.intro,
+        intro: profile.intro && !/Public AI lovers/i.test(profile.intro) ? profile.intro : fallback.intro,
         topicFilter: "fashion-industry",
         topicFilters: ["fashion-industry"],
         sendTime: profile.sendTime || fallback.sendTime,
@@ -3351,13 +3351,13 @@ const normalizeNewsletterProfiles = (profiles: NewsletterProfile[]) => {
       id: fallback.id,
       name: fallback.name,
       topicFilter: "ai",
-      topicFilters: TANUKI_TOPIC_FILTERS,
-      customInterests: TANUKI_CUSTOM_INTERESTS,
+      topicFilters: PUBLIC_TOPIC_FILTERS,
+      customInterests: PUBLIC_CUSTOM_INTERESTS,
       sendTime: profile.sendTime || fallback.sendTime,
       sendTimes: profile.sendTimes?.length ? profile.sendTimes : fallback.sendTimes,
       sendWeekdays: profile.sendWeekdays?.length ? profile.sendWeekdays : fallback.sendWeekdays,
       sendSchedule: profile.sendSchedule?.length ? profile.sendSchedule : fallback.sendSchedule,
-      crmList: `list:${TANUKI_NEWS_LIST_ID}`,
+      crmList: `list:${PUBLIC_NEWS_LIST_ID}`,
       enabled: profile.enabled,
       topCount: Math.max(10, profile.topCount || 10),
       templateName: fallback.templateName,
@@ -3382,7 +3382,7 @@ const normalizeNewsletterProfiles = (profiles: NewsletterProfile[]) => {
   const orderedIds = [
     PROPERTY_DIGEST_NEWSLETTER_PROFILE_ID,
     ITALY_MOBILITY_NEWSLETTER_PROFILE_ID,
-    "newsletter_tanuki_ai_daily",
+    "newsletter_public_ai_daily",
     "newsletter_second_life_fashion_daily",
     "newsletter_kapricorn_leaflet",
   ];
@@ -3524,7 +3524,7 @@ const newsletterRelayCandidates = () => {
     if (hostname) add(`${protocol}//${hostname}:8788`);
   }
   // Prefer the reachable LAN relay while the phone is on the same Wi-Fi.
-  // Dead Tailscale candidates can otherwise delay every campaign by several
+  // Dead Secure Mesh candidates can otherwise delay every campaign by several
   // bridge timeouts before the working route is attempted.
           if (typeof window !== "undefined") {
     add(localStorage.getItem("pocketflow.codexRelay.endpoint"), { allowNativeLoopback: true });
@@ -3741,7 +3741,7 @@ const matchesNewsletterInterest = (item: NewsItem, profile: NewsletterProfile) =
 const newsletterListLabel = (crmList: string, customLists = newsletterContactListsFromStorage()) => {
   if (crmList.startsWith("list:")) {
     const listId = crmList.slice(5);
-    return normalizeNewsletterContactLists(customLists).find((list) => list.id === listId)?.name || "Tanuki News";
+    return normalizeNewsletterContactLists(customLists).find((list) => list.id === listId)?.name || "Public AI News";
   }
   if (crmList.startsWith("crm_list:")) {
     const listId = crmList.slice(9);
@@ -3972,10 +3972,10 @@ const selectNewsletterItems = (
     const timestamp = Date.parse(item.publishedAt);
     return Number.isNaN(timestamp) || timestamp >= cutoff;
   });
-  const profileIsTanuki = isTanukiNewsletterProfile(profile);
+  const profileIsPublic = isPublicNewsletterProfile(profile);
   const filtered = eligible.filter((item) =>
-    profileIsTanuki
-      ? matchesTanukiAiInnovationBrief(item)
+    profileIsPublic
+      ? matchesPublicAiInnovationBrief(item)
       : matchesNewsletterInterest(item, profile),
   );
   const liked = filtered
@@ -3993,8 +3993,8 @@ const runNewsFlowTopicRefresh = async (profile: NewsletterProfile, reason = "new
   const isMobilityProfile = newsletterTopicIds(profile).includes("italy-mobility");
   const sources = activeSourcePool(NEWS_SOURCES)
     .filter((source) =>
-      isTanukiNewsletterProfile(profile)
-        ? TANUKI_ALLOWED_SOURCE_IDS.has(source.id)
+      isPublicNewsletterProfile(profile)
+        ? PUBLIC_ALLOWED_SOURCE_IDS.has(source.id)
         : sourceTopics.has(source.topic),
     )
     .sort((a, b) => b.priority - a.priority)
@@ -4101,24 +4101,24 @@ const renderSecondLifeNewsletterHtml = (profile: NewsletterProfile, selected: Ne
   `;
 };
 
-const renderTanukiNewsletterHtml = (profile: NewsletterProfile, selected: NewsItem[]) => {
+const renderPublicNewsletterHtml = (profile: NewsletterProfile, selected: NewsItem[]) => {
   const today = new Date().toLocaleDateString([], { weekday: "long", year: "numeric", month: "long", day: "numeric" });
   const intro = (profile.intro || DEFAULT_NEWSLETTER_INTRO).replace(/\{\{date\}\}/gi, today);
   const theme = {
-    ...TANUKI_NEWSLETTER_THEME,
-    pageBg: profile.bodyBgColor || TANUKI_NEWSLETTER_THEME.pageBg,
-    headerBg: profile.headerBgColor || TANUKI_NEWSLETTER_THEME.headerBg,
-    text: profile.headerTextColor || TANUKI_NEWSLETTER_THEME.text,
-    gold: profile.accentColor || TANUKI_NEWSLETTER_THEME.gold,
-    footerBg: profile.footerBgColor || profile.headerBgColor || TANUKI_NEWSLETTER_THEME.headerBg,
-    footerText: profile.footerTextColor || TANUKI_NEWSLETTER_THEME.text,
-    font: profile.fontFamily || TANUKI_NEWSLETTER_THEME.font,
+    ...PUBLIC_NEWSLETTER_THEME,
+    pageBg: profile.bodyBgColor || PUBLIC_NEWSLETTER_THEME.pageBg,
+    headerBg: profile.headerBgColor || PUBLIC_NEWSLETTER_THEME.headerBg,
+    text: profile.headerTextColor || PUBLIC_NEWSLETTER_THEME.text,
+    gold: profile.accentColor || PUBLIC_NEWSLETTER_THEME.gold,
+    footerBg: profile.footerBgColor || profile.headerBgColor || PUBLIC_NEWSLETTER_THEME.headerBg,
+    footerText: profile.footerTextColor || PUBLIC_NEWSLETTER_THEME.text,
+    font: profile.fontFamily || PUBLIC_NEWSLETTER_THEME.font,
   };
   const fontFamily = theme.font;
   const footprint = profile.footprint || DEFAULT_NEWSLETTER_FOOTPRINT;
   const logoBlock = profile.logoDataUrl
-    ? `<img src="${escapeHtml(profile.logoDataUrl)}" alt="Tanuki Labs" style="display:block;max-width:158px;max-height:76px;object-fit:contain;margin:0 0 18px;" />`
-    : `<div style="display:inline-block;padding:10px 14px;border:2px solid ${theme.gold};border-radius:999px;color:${theme.gold};font:900 11px ${fontFamily};letter-spacing:3px;text-transform:uppercase;">Tanuki Labs</div>`;
+    ? `<img src="${escapeHtml(profile.logoDataUrl)}" alt="PocketFlow Studio" style="display:block;max-width:158px;max-height:76px;object-fit:contain;margin:0 0 18px;" />`
+    : `<div style="display:inline-block;padding:10px 14px;border:2px solid ${theme.gold};border-radius:999px;color:${theme.gold};font:900 11px ${fontFamily};letter-spacing:3px;text-transform:uppercase;">PocketFlow Studio</div>`;
   const items = selected.map((item, index) => `
     <tr>
       <td style="padding:0 0 14px;">
@@ -4150,7 +4150,7 @@ const renderTanukiNewsletterHtml = (profile: NewsletterProfile, selected: NewsIt
                 <td style="vertical-align:middle;">
                   ${logoBlock}
                   <div style="margin-top:18px;font:900 10px ${fontFamily};text-transform:uppercase;letter-spacing:3.2px;color:${theme.gold};">AI-native software / builder intelligence</div>
-                  <h1 style="margin:9px 0 8px;font:900 36px ${fontFamily};color:${profile.headerTextColor || theme.gold};line-height:1.02;">${escapeHtml(profile.title || "Tanuki AI Daily Brief")}</h1>
+                  <h1 style="margin:9px 0 8px;font:900 36px ${fontFamily};color:${profile.headerTextColor || theme.gold};line-height:1.02;">${escapeHtml(profile.title || "Public AI Daily Brief")}</h1>
                   <div style="font:800 11px ${fontFamily};text-transform:uppercase;letter-spacing:2.6px;color:${profile.headerTextColor || "#fffaf0"};">${escapeHtml(today)}</div>
                 </td>
               </tr>
@@ -4171,7 +4171,7 @@ const renderTanukiNewsletterHtml = (profile: NewsletterProfile, selected: NewsIt
         </tr>
         <tr>
           <td style="padding:22px 28px;text-align:center;background:${theme.footerBg};border-top:1px solid ${theme.border};">
-            <div style="font:900 12px ${fontFamily};text-transform:uppercase;letter-spacing:2.8px;white-space:pre-line;color:${theme.footerText};">${escapeHtml(profile.signature || "Tanuki Labs")}</div>
+            <div style="font:900 12px ${fontFamily};text-transform:uppercase;letter-spacing:2.8px;white-space:pre-line;color:${theme.footerText};">${escapeHtml(profile.signature || "PocketFlow Studio")}</div>
             <div style="margin-top:10px;font:800 11px ${fontFamily};letter-spacing:1.8px;color:${theme.footerText};">${escapeHtml(footprint)}</div>
           </td>
         </tr>
@@ -4416,8 +4416,8 @@ const renderNewsletterHtml = (profile: NewsletterProfile, selected: NewsItem[]) 
   if (profile.id === "newsletter_kapricorn_leaflet" || profile.topicFilters?.includes("kapricorn")) {
     return renderKapricornLeafletHtml(profile, selected);
   }
-  if (profile.id === "newsletter_tanuki_ai_daily") {
-    return renderTanukiNewsletterHtml(profile, selected);
+  if (profile.id === "newsletter_public_ai_daily") {
+    return renderPublicNewsletterHtml(profile, selected);
   }
 
   const today = new Date().toLocaleDateString([], { weekday: "long", year: "numeric", month: "long", day: "numeric" });
@@ -5528,10 +5528,10 @@ export default function NewsFlowApp({ onNotify }: NewsFlowAppProps) {
     newsletterContactListsFromStorage(),
   );
   const [activeContactListId, setActiveContactListId] = useState(() =>
-    localStorage.getItem(NEWSLETTER_ACTIVE_CONTACT_LIST_KEY) || TANUKI_NEWS_LIST_ID,
+    localStorage.getItem(NEWSLETTER_ACTIVE_CONTACT_LIST_KEY) || PUBLIC_NEWS_LIST_ID,
   );
   const [expandedContactListId, setExpandedContactListId] = useState(() =>
-    localStorage.getItem(NEWSLETTER_ACTIVE_CONTACT_LIST_KEY) || TANUKI_NEWS_LIST_ID,
+    localStorage.getItem(NEWSLETTER_ACTIVE_CONTACT_LIST_KEY) || PUBLIC_NEWS_LIST_ID,
   );
   const [bulkContactsText, setBulkContactsText] = useState("");
   const [quickContactName, setQuickContactName] = useState("");
@@ -5790,12 +5790,12 @@ export default function NewsFlowApp({ onNotify }: NewsFlowAppProps) {
     setContactLists(normalized);
     saveJson(NEWSLETTER_CONTACT_LISTS_KEY, normalized);
     if (!normalized.some((list) => list.id === activeContactListId)) {
-      const fallbackId = normalized[0]?.id || TANUKI_NEWS_LIST_ID;
+      const fallbackId = normalized[0]?.id || PUBLIC_NEWS_LIST_ID;
       setActiveContactListId(fallbackId);
       localStorage.setItem(NEWSLETTER_ACTIVE_CONTACT_LIST_KEY, fallbackId);
     }
     if (!normalized.some((list) => list.id === expandedContactListId)) {
-      setExpandedContactListId(normalized[0]?.id || TANUKI_NEWS_LIST_ID);
+      setExpandedContactListId(normalized[0]?.id || PUBLIC_NEWS_LIST_ID);
     }
   };
 
@@ -5971,7 +5971,7 @@ export default function NewsFlowApp({ onNotify }: NewsFlowAppProps) {
     const next = profiles.filter((profile) => profile.id !== profileId);
     saveProfiles(next);
     const ownedListId = target.crmList.startsWith("list:") ? target.crmList.slice(5) : "";
-    if (ownedListId && ![TANUKI_NEWS_LIST_ID, SECOND_LIFE_NEWS_LIST_ID, KAPRI_NEWS_LIST_ID, PROPERTY_DIGEST_NEWS_LIST_ID].includes(ownedListId)) {
+    if (ownedListId && ![PUBLIC_NEWS_LIST_ID, SECOND_LIFE_NEWS_LIST_ID, KAPRI_NEWS_LIST_ID, PROPERTY_DIGEST_NEWS_LIST_ID].includes(ownedListId)) {
       saveContactLists(contactLists.filter((list) => list.id !== ownedListId));
     }
     setCampaignDrafts((current) => {
@@ -6061,10 +6061,10 @@ export default function NewsFlowApp({ onNotify }: NewsFlowAppProps) {
   };
 
   const removeContactList = (id: string) => {
-    if (id === TANUKI_NEWS_LIST_ID || contactLists.length <= 1) return;
+    if (id === PUBLIC_NEWS_LIST_ID || contactLists.length <= 1) return;
     const next = contactLists.filter((list) => list.id !== id);
     saveContactLists(next);
-    const fallback = `list:${TANUKI_NEWS_LIST_ID}`;
+    const fallback = `list:${PUBLIC_NEWS_LIST_ID}`;
     saveProfiles(profiles.map((profile) => profile.crmList === `list:${id}` ? { ...profile, crmList: fallback } : profile));
   };
 
@@ -7869,7 +7869,7 @@ export default function NewsFlowApp({ onNotify }: NewsFlowAppProps) {
                               <button
                                 type="button"
                                 onClick={() => removeContactList(list.id)}
-                                disabled={list.id === TANUKI_NEWS_LIST_ID || contactLists.length <= 1}
+                                disabled={list.id === PUBLIC_NEWS_LIST_ID || contactLists.length <= 1}
                                 className="h-11 rounded-lg border border-[#991b1b] bg-[#fffaf0] text-[8px] font-mono font-black uppercase tracking-[0.14em] text-[#991b1b] disabled:opacity-35"
                               >
                                 Remove list

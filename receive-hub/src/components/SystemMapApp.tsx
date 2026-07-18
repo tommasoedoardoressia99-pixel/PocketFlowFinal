@@ -27,10 +27,10 @@ import {
   type BalossDurableJob,
 } from "../utils/balossDurableScheduler";
 import {
-  TANUKI_SERVER_INVENTORY,
-  TANUKI_SERVER_RUNTIME_STORAGE_KEY,
-  loadTanukiServerRuntime,
-} from "../data/tanukiServerInventory";
+  PUBLIC_SERVER_INVENTORY,
+  PUBLIC_SERVER_RUNTIME_STORAGE_KEY,
+  loadPublicServerRuntime,
+} from "../data/publicServerInventory";
 import { loadBalossAgentHealthReport } from "../utils/spinoAgentHealth";
 import { SPINO_AGENT_NODES } from "../utils/spinoOrchestrator";
 import { loadSpinoIndex, type AetherStorageStats, type SpinoRuntimeStats } from "../utils/spinoLLMEngine";
@@ -275,7 +275,7 @@ const layerMeta: Record<MapLayer, { label: string; hubLabel: string; color: stri
     label: "External Server Lane",
     hubLabel: "External Servers",
     color: "#38bdf8",
-    description: "Tanuki public server routes, protected apps, mapped ports, runtime endpoints and monitor memories.",
+    description: "public server routes, protected apps, mapped ports, runtime endpoints and monitor memories.",
     hubX: 800,
     hubY: 4500,
     angle: 90,
@@ -332,7 +332,7 @@ const APP_HUB_DEFINITIONS: Array<{
     detail: "News Flow station for story pulls, newsletter sources, campaign drafts and public intel memory.",
     metric: "digests",
     source: "App hub map / News Flow",
-    links: ["online-intel", "job-news-scouter-ai", "job-newsletter-tanuki-midnight"],
+    links: ["online-intel", "job-news-scouter-ai", "job-newsletter-public-midnight"],
   },
   {
     appId: "moltbook",
@@ -2716,7 +2716,7 @@ const parkingAvatarOffset = (agentId: string, station?: EMapStation) => {
 
 const agentTagForId = (agentId: string) => {
   const id = agentId.toLowerCase();
-  if (id.includes("newsletter-tanuki") || id.includes("tanuki")) return "TNK";
+  if (id.includes("newsletter-public") || id.includes("public")) return "TNK";
   if (id.includes("newsletter-secondlife") || id.includes("secondlife")) return "2LF";
   if (id.includes("newsletter-lakehouse") || id.includes("lakehouse")) return "LKH";
   if (id.includes("kapricorn")) return "KAP";
@@ -2800,7 +2800,7 @@ const trainAgentColor = (train: EMapTrain) => agentColorForTag(trainAgentTag(tra
 
 const farZoomAgentKey = [
   ["MLT", "Moltbook", "moltbook/social automation"],
-  ["TNK", "Tanuki", "Tanuki AI newsletter"],
+  ["TNK", "Public", "Public AI newsletter"],
   ["2LF", "2ndLife", "fashion newsletter"],
   ["LKH", "LakeHouse", "property newsletter"],
   ["KAP", "Kapricorn", "weekly parked campaign"],
@@ -3305,7 +3305,7 @@ const collectSnapshot = async (): Promise<SystemSnapshot> => {
   const dashboards = getAllDashboards();
   const intel = loadSpinoIntelSnapshot();
   const archiveMaintenance = loadArchiveMaintenanceState();
-  const serverRuntime = loadTanukiServerRuntime();
+  const serverRuntime = loadPublicServerRuntime();
   const agentOutputs = runBalossAgentOutputMaintenance({
     files: files.length,
     builderProjects: builderProjects.length,
@@ -3316,7 +3316,7 @@ const collectSnapshot = async (): Promise<SystemSnapshot> => {
     jobs,
     runtimeStats,
     archiveMaintenance,
-    serverServiceCount: TANUKI_SERVER_INVENTORY.length,
+    serverServiceCount: PUBLIC_SERVER_INVENTORY.length,
   });
   jobs = agentOutputs.jobs;
   const agentControls = readAgentControls();
@@ -3682,7 +3682,7 @@ const collectSnapshot = async (): Promise<SystemSnapshot> => {
     appId: app.id,
   }));
 
-  const externalStations: SystemStation[] = TANUKI_SERVER_INVENTORY.map((service, index) => {
+  const externalStations: SystemStation[] = PUBLIC_SERVER_INVENTORY.map((service, index) => {
     const runtime = serverRuntime[service.id];
     const status = externalStatus(runtime?.health);
     const runtimeParts = [
@@ -3700,7 +3700,7 @@ const collectSnapshot = async (): Promise<SystemSnapshot> => {
       y: 0,
       detail: compact(runtimeParts.length ? `${service.description} ${runtimeParts.join(" | ")}.` : service.description, 180),
       metric: runtime?.checkedAt ? new Date(runtime.checkedAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : service.group,
-      source: runtime?.source ? `Tanuki monitor memory: ${runtime.source}` : "Tanuki server inventory",
+      source: runtime?.source ? `public monitor memory: ${runtime.source}` : "public server inventory",
       repair: runtime?.needsAction || (service.url ? "Open this station when you need route details, functions or server-check context." : "Add the exact endpoint before live checks can run."),
       url: service.url,
       functions: service.functions,
@@ -4152,16 +4152,16 @@ export default function SystemMapApp({ onNotify, onOpenApp }: SystemMapAppProps)
   const requestExternalRecheck = (station: SystemStation | undefined) => {
     if (!station?.id.startsWith("external-")) return;
     const serviceId = station.id.replace(/^external-/, "");
-    const runtime = loadTanukiServerRuntime();
+    const runtime = loadPublicServerRuntime();
     runtime[serviceId] = {
       ...runtime[serviceId],
       health: "checking",
       checkedAt: new Date().toISOString(),
-      message: "Manual recheck requested from Baloss Panel. Waiting for Tanuki Monitor memory refresh.",
+      message: "Manual recheck requested from Baloss Panel. Waiting for Public Monitor memory refresh.",
       source: "system-map",
     };
-    localStorage.setItem(TANUKI_SERVER_RUNTIME_STORAGE_KEY, JSON.stringify(runtime));
-    window.dispatchEvent(new StorageEvent("storage", { key: TANUKI_SERVER_RUNTIME_STORAGE_KEY }));
+    localStorage.setItem(PUBLIC_SERVER_RUNTIME_STORAGE_KEY, JSON.stringify(runtime));
+    window.dispatchEvent(new StorageEvent("storage", { key: PUBLIC_SERVER_RUNTIME_STORAGE_KEY }));
     recordControl(station, "request recheck", "External server recheck marked as checking.");
     onNotify?.("Server station marked for recheck.", "info");
     void refresh();

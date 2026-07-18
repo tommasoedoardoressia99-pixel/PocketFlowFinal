@@ -1,6 +1,6 @@
-export type TanukiServerInventoryHealth = "healthy" | "warning" | "blocked" | "down" | "checking" | "unknown";
+export type PublicServerInventoryHealth = "healthy" | "warning" | "blocked" | "down" | "checking" | "unknown";
 
-export interface TanukiServerInventoryService {
+export interface PublicServerInventoryService {
   id: string;
   label: string;
   group: string;
@@ -10,8 +10,8 @@ export interface TanukiServerInventoryService {
   sensitive?: boolean;
 }
 
-export interface TanukiServerStoredRuntime {
-  health?: TanukiServerInventoryHealth;
+export interface PublicServerStoredRuntime {
+  health?: PublicServerInventoryHealth;
   message?: string;
   latencyMs?: number;
   checkedAt?: string;
@@ -22,9 +22,9 @@ export interface TanukiServerStoredRuntime {
   evidence?: string[];
 }
 
-export const TANUKI_SERVER_RUNTIME_STORAGE_KEY = "pocketflow.publicDemo.serverRuntime.v1";
+export const PUBLIC_SERVER_RUNTIME_STORAGE_KEY = "pocketflow.publicDemo.serverRuntime.v1";
 
-export const TANUKI_SERVER_INVENTORY: TanukiServerInventoryService[] = [
+export const PUBLIC_SERVER_INVENTORY: PublicServerInventoryService[] = [
   {
     id: "public-router",
     label: "Public Router Template",
@@ -44,12 +44,12 @@ export const TANUKI_SERVER_INVENTORY: TanukiServerInventoryService[] = [
   },
 ];
 
-export const loadTanukiServerRuntime = () => {
+export const loadPublicServerRuntime = () => {
   try {
-    const stored = localStorage.getItem(TANUKI_SERVER_RUNTIME_STORAGE_KEY);
-    if (!stored) return {} as Record<string, TanukiServerStoredRuntime>;
-    return JSON.parse(stored) as Record<string, TanukiServerStoredRuntime>;
+    const stored = localStorage.getItem(PUBLIC_SERVER_RUNTIME_STORAGE_KEY);
+    if (!stored) return {} as Record<string, PublicServerStoredRuntime>;
+    return JSON.parse(stored) as Record<string, PublicServerStoredRuntime>;
   } catch {
-    return {} as Record<string, TanukiServerStoredRuntime>;
+    return {} as Record<string, PublicServerStoredRuntime>;
   }
 };

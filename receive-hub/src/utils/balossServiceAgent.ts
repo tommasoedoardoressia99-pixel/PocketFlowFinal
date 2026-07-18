@@ -76,9 +76,9 @@ const RELAY_TOKEN_KEY = "pocketflow.codexRelay.token";
 
 const DEFAULT_NEWSLETTER_PROFILES: NewsletterProfileLite[] = [
   {
-    id: "newsletter_tanuki_ai_daily",
-    name: "Tanuki AI",
-    title: "Tanuki AI Daily Brief",
+    id: "newsletter_public_ai_daily",
+    name: "Public AI",
+    title: "Public AI Daily Brief",
     enabled: true,
     cadence: "daily",
     sendTime: "00:00",
@@ -158,8 +158,8 @@ const normalizeTimes = (times: string[] = [], fallback = "00:00") => {
 
 const targetNewsletterProfile = (prompt: string, profiles: NewsletterProfileLite[]) => {
   const text = normalizeText(prompt);
-  if (/\b(tanuki|ai daily|ai brief)\b/.test(text)) {
-    return profiles.find((profile) => /tanuki/i.test(`${profile.id} ${profile.name} ${profile.title}`));
+  if (/\b(public|ai daily|ai brief)\b/.test(text)) {
+    return profiles.find((profile) => /public/i.test(`${profile.id} ${profile.name} ${profile.title}`));
   }
   if (/\b(2nd life|second life|fashion)\b/.test(text)) {
     return profiles.find((profile) => /second|fashion/i.test(`${profile.id} ${profile.name} ${profile.title}`));
@@ -231,7 +231,7 @@ const answerNewsletterStatus = (prompt: string): BalossServiceAnswer => {
 const isNewsletterStatusPrompt = (prompt: string) => {
   const text = normalizeText(prompt);
   return /\b(next|when|planned|schedule|scheduled|status|watchdog|sent|send)\b/.test(text) &&
-    /\b(newsletter|campaign|tanuki|fashion|second life|2nd life|kapricorn)\b/.test(text);
+    /\b(newsletter|campaign|public|fashion|second life|2nd life|kapricorn)\b/.test(text);
 };
 
 const browserDateForViaggiaTreno = (date = new Date()) => {

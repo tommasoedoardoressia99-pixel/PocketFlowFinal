@@ -242,7 +242,7 @@ const isLoopbackHost = (host: string) => {
   return clean === "localhost" || clean === "127.0.0.1" || clean === "::1" || clean === "[::1]";
 };
 
-const isTailscaleHost = (host: string) => {
+const isMeshHost = (host: string) => {
   const match = host.match(/^100\.(\d{1,3})\./);
   if (!match) return false;
   const second = Number(match[1]);
@@ -269,7 +269,7 @@ const relayRouteInfo = (endpoint: string): { kind: RelayRouteKind; label: string
         remoteReady: false,
       };
     }
-    if (isTailscaleHost(host) || host.endsWith(".ts.net")) {
+    if (isMeshHost(host) || host.endsWith(".ts.net")) {
       return {
         kind: "vpn",
         label: "VPN remote",
@@ -479,7 +479,7 @@ const relayEndpointScore = (endpoint: string) => {
     const pageHost = typeof window === "undefined" ? "" : window.location.hostname;
     if (route.kind === "public") return 0;
     if (isLoopbackHost(host) && (!pageHost || isPocketFlowLocalHost())) return 0.5;
-    // Prefer a reachable home relay over a stale VPN route. Tailscale remains
+    // Prefer a reachable home relay over a stale VPN route. Secure Mesh remains
     // a fallback for mobile-data/off-site use, but it must not delay LAN login.
     if (route.kind === "home") return 1;
     if (route.kind === "vpn") return 2;
@@ -1410,7 +1410,7 @@ export default function RelayApp({
       const shouldRewritePrivateLan = replacement && isPrivateLanHost(parsed.hostname) && (() => {
         try {
           const replacementHost = new URL(replacement).hostname;
-          return isTailscaleHost(replacementHost);
+          return isMeshHost(replacementHost);
         } catch {
           return false;
         }

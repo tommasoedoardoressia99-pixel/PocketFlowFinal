@@ -67,7 +67,7 @@ export const saveBalossExperienceMemory = (entries: BalossExperienceMemoryEntry[
 const TAG_ALIASES: Record<string, string[]> = {
   builder: ["builder", "build", "workflow", "flow", "box", "boxes", "architecture", "prompt"],
   dashboard: ["dashboard", "dashforge", "html", "report"],
-  relay: ["relay", "codex", "preview", "localhost", "tailscale"],
+  relay: ["relay", "codex", "preview", "localhost", "secure mesh"],
   moltbook: ["moltbook", "multiple", "agentmoltbook", "post", "comment", "social"],
   notes: ["notes", "note", "meeting", "memo", "transcription", "summary"],
   calendar: ["calendar", "calander", "calender", "appointment", "event", "agenda"],
@@ -76,7 +76,7 @@ const TAG_ALIASES: Record<string, string[]> = {
   archive: ["archive", "reader", "file", "document", "download"],
   browser: ["browser", "web", "pocketweb", "search"],
   crm: ["crm", "email", "imap", "contact", "mail"],
-  server: ["server", "tanuki", "monitor", "health"],
+  server: ["server", "public", "monitor", "health"],
   radar: ["radar", "flight", "airport", "adsb", "plane"],
   phone: ["phone", "android", "realme", "device", "usb"],
   correction: ["fix", "wrong", "issue", "bug", "correct", "remove", "not working"],

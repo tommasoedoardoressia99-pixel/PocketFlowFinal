@@ -6,7 +6,7 @@ Rules applied:
 - Removed .env files and dependency/build caches.
 - Removed private-only app code, seeds, worker scripts and generated outputs.
 - Replaced contact/account seed data with empty public fixtures.
-- Replaced private Tanuki server inventory with public placeholders.
+- Replaced private public server inventory with public placeholders.
 - Disabled NewsFlow live newsletter delivery in public mode.
 - Replaced the phone launcher with a competition-safe public shell that mounts only approved apps.
 

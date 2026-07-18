@@ -72,9 +72,9 @@ export const BALOSS_DEFAULT_JOBS: BalossDurableJob[] = [
     priority: 20,
   },
   {
-    id: "newsletter-tanuki-midnight",
+    id: "newsletter-public-midnight",
     kind: "newsletter_send",
-    label: "Tanuki AI newsletter",
+    label: "Public AI newsletter",
     owner: "news",
     enabled: true,
     status: "queued",
@@ -229,7 +229,7 @@ const withNextRuns = (jobs: BalossDurableJob[]): BalossDurableJob[] => {
 const BALOSS_JOB_OVERRIDES: Record<string, Partial<BalossDurableJob>> = {
   "news-scouter-ai": { everyMinutes: 120, offsetMinutes: 20 },
   "news-scouter-fashion": { everyMinutes: 120, offsetMinutes: 80 },
-  "newsletter-tanuki-midnight": { dailyAt: "00:00" },
+  "newsletter-public-midnight": { dailyAt: "00:00" },
   "newsletter-fashion-18": { dailyAt: "18:00" },
   "newsletter-property-20": { dailyAt: "20:00" },
   "newsletter-kapricorn-thu-10": {

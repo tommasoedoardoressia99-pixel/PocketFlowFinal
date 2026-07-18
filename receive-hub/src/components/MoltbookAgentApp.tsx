@@ -1268,7 +1268,7 @@ const MoltbookAgentApp = ({ onNotify }: MoltbookAgentAppProps) => {
           <div className="rounded-sm border border-white/10 bg-black/25 p-4 text-sm leading-6 text-zinc-400">
             Imported identity: <b className="text-white">{MOLTBOOK_ACCOUNT_DISPLAY_NAME}</b>{" "}
             <b className="text-[#FF4D00]">{state.username || "@BalossBuddyBot"}</b>. Contact email known as{" "}
-            <b className="text-white">{MOLTBOOK_ACCOUNT_CONTACT_EMAIL}</b>. Live mode uses the phone-stored Tailscale bridge and local Baloss LLM route; no Groq key pool is required for Moltbook posting. If the bridge is offline, drafts queue and retry.
+            <b className="text-white">{MOLTBOOK_ACCOUNT_CONTACT_EMAIL}</b>. Live mode uses the phone-stored Secure Mesh bridge and local Baloss LLM route; no Groq key pool is required for Moltbook posting. If the bridge is offline, drafts queue and retry.
           </div>
         </div>
       </Section>

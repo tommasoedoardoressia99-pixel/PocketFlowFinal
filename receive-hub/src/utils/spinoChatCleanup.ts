@@ -93,7 +93,7 @@ const cleanAssistantScratch = (content: string) => {
     .split(/\n+/)
     .map((line) => line.trim())
     .filter(Boolean)
-    .filter((line) => !/^(PocketFlow Baloss LLM conversation memory|Time:|Mode:|Sources?:|Question tracked locally:|BALOSS CENTRAL HEARTBEAT|CONVERSATION READINESS|ONLINE BALOSS LLM 144H INTELLIGENCE|AUTHORIZED TANUKI WWW AGENT GATEWAY)$/i.test(line))
+    .filter((line) => !/^(PocketFlow Baloss LLM conversation memory|Time:|Mode:|Sources?:|Question tracked locally:|BALOSS CENTRAL HEARTBEAT|CONVERSATION READINESS|ONLINE BALOSS LLM 144H INTELLIGENCE|AUTHORIZED PUBLIC WWW AGENT GATEWAY)$/i.test(line))
     .filter((line) => !/^(LOCAL REASONING MODEL|SPEECH TRANSCRIPTION|SEMANTIC RETRIEVAL|TOOL PERMISSIONS)\s+(MISSING|PARTIAL|READY)$/i.test(line))
     .map((line) => line.replace(/^(USER|SPINO):\s*/i, "").trim())
     .filter(Boolean)

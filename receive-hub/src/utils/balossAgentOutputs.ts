@@ -264,7 +264,7 @@ export const writeTransportDropboxSnapshot = (input: BalossAgentOutputInput): Tr
       "transport-server",
       "Server Summary Collector",
       `${root}/server-summary.txt`,
-      "Tanuki server inventory",
+      "public server inventory",
       `${input.serverServiceCount} mapped server/app services ready for monitor import.`,
       [
         compactLine("Mapped services", input.serverServiceCount),

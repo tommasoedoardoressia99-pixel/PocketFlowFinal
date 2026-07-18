@@ -5,7 +5,7 @@ const PUBLIC_RESET_KEY = "pocketflowFinal.public.resetVersion";
 
 const PRIVATE_KEY_PREFIXES = [
   "pocketflow.",
-  "tanuki.",
+  "public.",
   "baloss.",
   "spino.",
   "moltbook.",

@@ -215,7 +215,7 @@ export const refreshAgentGatewaySnapshot = async () => {
 };
 
 export const shouldUseAgentGateway = (prompt: string) =>
-  /\b(tanuki gateway|agent gateway|access panel|systems? health|systems? status|check ratings?|ratings?|2nd\s*life|2ls|openclaw|dashforge|moltbook|private transfer|transfer desk|web monitor|www status|navigate www)\b/i.test(prompt);
+  /\b(public gateway|agent gateway|access panel|systems? health|systems? status|check ratings?|ratings?|2nd\s*life|2ls|openclaw|dashforge|moltbook|private transfer|transfer desk|web monitor|www status|navigate www)\b/i.test(prompt);
 
 export const buildAgentGatewayContext = (snapshot: AgentGatewaySnapshot, limit = 12) => {
   if (!snapshot.systems.length) return "";
@@ -224,7 +224,7 @@ export const buildAgentGatewayContext = (snapshot: AgentGatewaySnapshot, limit =
     return acc;
   }, { excellent: 0, good: 0, slow: 0, down: 0, unknown: 0 });
   return [
-    "AUTHORIZED TANUKI WWW AGENT GATEWAY",
+    "AUTHORIZED PUBLIC WWW AGENT GATEWAY",
     `Fetched: ${snapshot.fetchedAt || "not yet"} / status: ${snapshot.status}`,
     `Ratings: ${counts.excellent} excellent, ${counts.good} good, ${counts.slow} slow, ${counts.down} down, ${counts.unknown} unknown.`,
     snapshot.summary
@@ -255,7 +255,7 @@ export const answerFromAgentGateway = (snapshot: AgentGatewaySnapshot) => {
     return `- ${system.name}: ${system.rating} (${system.health?.status || "?"}, ${ms})`;
   }).join("\n");
   return [
-    "Tanuki gateway ratings are live.",
+    "Public gateway ratings are live.",
     `${counts.excellent} excellent, ${counts.good} good, ${counts.slow} slow, ${counts.down} down, ${counts.unknown} unknown.`,
     top,
     snapshot.summary ? `2ND LIFE: ${snapshot.summary.items ?? "--"} items, ${snapshot.summary.shopItems ?? "--"} shop items, ${snapshot.summary.inventoryItems ?? "--"} inventory.` : "",

@@ -211,7 +211,7 @@ const agentIdealModels: Partial<Record<SpinoAgentNode["id"], string>> = {
   archive: "Storage caretaker with dedupe, threat queues, type sorting, search and reversible cleanup.",
   settings: "Permission-aware settings controller with key health, model toggles and owner approval for risky changes.",
   model: "Local-first model supervisor with native runner, retrieval fallback, RAM guard, queue state and crash isolation.",
-  relay: "Signed desktop relay with project selection, preview routing, Tailscale/LAN checks and visible failure logs.",
+  relay: "Signed desktop relay with project selection, preview routing, Secure Mesh/LAN checks and visible failure logs.",
   crm: "Mail/CRM operator with mailbox checks, list sync, draft review, webhook queue and send confirmation.",
   newsletter: "Campaign builder with schedule rules, quality control, list health, dedupe and CRM handoff.",
   moltbook: "Social posting agent with reserve drafts, public-safe content rules, queue retry and posting audit log.",
@@ -413,7 +413,7 @@ const buildItem = (
       if (!freshGateway) {
         actions.push("Run gateway/bridge health check for this external service.");
         failurePoints.push("Gateway health snapshot is missing or stale.");
-        repairPlan.push("Refresh authorised Tanuki gateway, verify token and rerun system health.");
+        repairPlan.push("Refresh authorised Public gateway, verify token and rerun system health.");
       }
       break;
     }
@@ -452,7 +452,7 @@ const buildItem = (
         ? `${input.agentGatewaySnapshot.systems.length} authorised systems recently rated.`
         : "Relay/gateway needs a fresh reachable check.";
       if (!input.agentGatewaySnapshot.ok) {
-        actions.push("Check Relay/Tailscale endpoint and gateway token.");
+        actions.push("Check Relay/Secure Mesh endpoint and gateway token.");
         failurePoints.push("Relay/gateway reachability is not freshly confirmed.");
         repairPlan.push("Run Relay ping, verify selected project list and gateway token.");
       }

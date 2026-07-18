@@ -367,7 +367,7 @@ declare global {
       shareText?: (title: string, text: string) => Promise<{ ok: boolean; message?: string }>;
       openUrlInMainWebView?: (url: string) => Promise<{ ok: boolean; message?: string }>;
       setSecondDisplayOrientation?: (mode: "portrait" | "landscape" | "sensor" | "auto") => Promise<{ ok: boolean; orientation?: string; message?: string }>;
-      tanukiGateFetch?: (path: string) => Promise<{
+      publicGateFetch?: (path: string) => Promise<{
         ok: boolean;
         source?: string;
         status?: number;
@@ -377,7 +377,7 @@ declare global {
         body?: string;
         message?: string;
       }>;
-      tanukiGateLogin?: (code: string) => Promise<{
+      publicGateLogin?: (code: string) => Promise<{
         ok: boolean;
         source?: string;
         status?: number;

@@ -477,7 +477,7 @@ const MOLTBOOK_POCKETFLOW_MAX_PLANNED_RATIO = 0.25;
 
 const isPocketFlowCentricDraft = (draft: Pick<MoltbookPostDraft, "title" | "body" | "pillar" | "source">) =>
   draft.source === "build_diary"
-  || /\b(pocketflow|baloss|tanuki labs|build diary|phone shell|system map|emap)\b/i.test(`${draft.title} ${draft.body} ${draft.pillar}`);
+  || /\b(pocketflow|baloss|public labs|build diary|phone shell|system map|emap)\b/i.test(`${draft.title} ${draft.body} ${draft.pillar}`);
 
 const isLegacyStarterDraft = (draft: MoltbookPostDraft) =>
   draft.source === "starter" && /^starter-\d{3}$/.test(draft.id);
@@ -542,7 +542,7 @@ export const MOLTBOOK_DEFAULT_STATE: MoltbookMobileState = {
     "model releases",
     "open-source AI tools",
     "automation case studies",
-    "Tanuki Labs style product building",
+    "PocketFlow Studio style product building",
   ],
   avoidedTopics: ["crypto", "coins", "trading"],
   examples: [
@@ -1598,7 +1598,7 @@ const buildHealthFromMoltbookStatus = (
     message:
       status === "connected"
         ? serverManaged
-          ? "Tanuki server Moltbook agent is running and authenticated."
+          ? "public server Moltbook agent is running and authenticated."
           : "Moltbook live bridge reachable."
         : status === "mock"
           ? "Moltbook bridge reachable, but still in mock mode."
@@ -1869,7 +1869,7 @@ export const runMoltbookDueAutomation = async (options: { reason?: string; maxPo
       interaction: {
         ...state.interaction,
         lastCheckedAt: now.toLocaleString(),
-        lastSummary: "Tanuki server Moltbook agent is running; phone runner stood down to avoid duplicate post attempts.",
+        lastSummary: "public server Moltbook agent is running; phone runner stood down to avoid duplicate post attempts.",
       },
       commandLog: [
         `${now.toLocaleString()}: Moltbook server agent already running; skipped phone due-post dispatch.`,
@@ -1883,7 +1883,7 @@ export const runMoltbookDueAutomation = async (options: { reason?: string; maxPo
       posted: 0,
       failed: 0,
       skipped: true,
-      message: "Tanuki server Moltbook agent is running; phone did not duplicate posting attempts.",
+      message: "public server Moltbook agent is running; phone did not duplicate posting attempts.",
       state,
     };
   }

@@ -25,12 +25,12 @@ export default function WWWApp({ onNotify, onBack }: WWWAppProps) {
 
   const reloadFrame = () => {
     setFrameKey((key) => key + 1);
-    onNotify?.("Reloading Tanuki Monitor.", "info");
+    onNotify?.("Reloading Public Monitor.", "info");
   };
 
   const openExternal = () => {
     window.open(monitorUrl, "_blank", "noopener,noreferrer");
-    onNotify?.("Opened Tanuki Monitor in browser.", "info");
+    onNotify?.("Opened Public Monitor in browser.", "info");
   };
 
   return (
@@ -50,7 +50,7 @@ export default function WWWApp({ onNotify, onBack }: WWWAppProps) {
               <Globe2 className="w-6 h-6" />
             </div>
             <div className="min-w-0">
-              <h1 className="text-xl font-black text-white tracking-tight truncate">Tanuki Monitor</h1>
+              <h1 className="text-xl font-black text-white tracking-tight truncate">Public Monitor</h1>
               <p className="mt-1 text-[9px] font-mono uppercase tracking-[0.2em] text-slate-500 truncate">
                 PocketFlow web app
               </p>
@@ -60,7 +60,7 @@ export default function WWWApp({ onNotify, onBack }: WWWAppProps) {
             type="button"
             onClick={reloadFrame}
             className="w-12 h-12 rounded-2xl border border-[#2d313d] bg-[#050607] text-slate-300 flex items-center justify-center active:scale-[0.98] transition"
-            aria-label="Reload Tanuki Monitor"
+            aria-label="Reload Public Monitor"
           >
             <RefreshCw className="w-5 h-5" />
           </button>
@@ -68,7 +68,7 @@ export default function WWWApp({ onNotify, onBack }: WWWAppProps) {
             type="button"
             onClick={openExternal}
             className="w-12 h-12 rounded-2xl border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 flex items-center justify-center active:scale-[0.98] transition"
-            aria-label="Open Tanuki Monitor in browser"
+            aria-label="Open Public Monitor in browser"
           >
             <ExternalLink className="w-5 h-5" />
           </button>
@@ -79,7 +79,7 @@ export default function WWWApp({ onNotify, onBack }: WWWAppProps) {
         <iframe
           key={frameKey}
           src={monitorUrl}
-          title="Tanuki Web Monitor"
+          title="Public Web Monitor"
           className="w-full h-full min-h-[calc(100vh-220px)] border-0 bg-white"
           referrerPolicy="no-referrer-when-downgrade"
           sandbox="allow-downloads allow-forms allow-popups allow-same-origin allow-scripts"

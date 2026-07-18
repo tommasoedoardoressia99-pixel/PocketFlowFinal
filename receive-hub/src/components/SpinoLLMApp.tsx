@@ -858,7 +858,7 @@ const wantsCampaignOrMoltbookUpdate = (prompt: string) => {
   const asksStatus = /\b(status|update|updates|latest|last|run|runs|working|posted|posting|sent|sending|campaign|campaigns|newsletter|newsletters|news flow|newsflow|moltbook|agentmoltbook)\b/.test(
     normalized,
   );
-  const mentionsOps = /\b(moltbook|agentmoltbook|campaign|campaigns|newsletter|newsletters|news flow|newsflow|daily brief|fashion news|tanuki ai|2ndlife|second life|latest run|last run)\b/.test(
+  const mentionsOps = /\b(moltbook|agentmoltbook|campaign|campaigns|newsletter|newsletters|news flow|newsflow|daily brief|fashion news|public ai|2ndlife|second life|latest run|last run)\b/.test(
     normalized,
   );
   return asksStatus && mentionsOps;
@@ -868,7 +868,7 @@ const buildCampaignAndMoltbookStatusReply = (prompt: string) => {
   if (!wantsCampaignOrMoltbookUpdate(prompt)) return "";
 
   const normalized = normalizeStatusText(prompt);
-  const includeNews = /\b(campaign|campaigns|newsletter|newsletters|news flow|newsflow|daily brief|fashion news|tanuki ai|2ndlife|second life|latest run|last run|sent|sending)\b/.test(
+  const includeNews = /\b(campaign|campaigns|newsletter|newsletters|news flow|newsflow|daily brief|fashion news|public ai|2ndlife|second life|latest run|last run|sent|sending)\b/.test(
     normalized,
   );
   const includeMoltbook = /\b(moltbook|agentmoltbook|post|posted|posting|social|latest run|last run)\b/.test(normalized);
@@ -1267,11 +1267,11 @@ export default function SpinoLLMApp({ onNotify, onSystemAction }: SpinoLLMAppPro
 
   const refreshAgentGateway = async () => {
     if (!navigator.onLine) {
-      setAgentGatewayStatus("Offline. Tanuki gateway will refresh when internet is back.");
+      setAgentGatewayStatus("Offline. Public gateway will refresh when internet is back.");
       return agentGatewaySnapshot;
     }
     setAgentGatewayLoading(true);
-    setAgentGatewayStatus("Checking authorised Tanuki systems...");
+    setAgentGatewayStatus("Checking authorised public systems...");
     try {
       const next = await refreshAgentGatewaySnapshot();
       setAgentGatewaySnapshot(next);
@@ -1280,7 +1280,7 @@ export default function SpinoLLMApp({ onNotify, onSystemAction }: SpinoLLMAppPro
       setAgentGatewayStatus(`${next.systems.length} systems rated. ${down} down, ${slow} slow.`);
       return next;
     } catch (error) {
-      const message = error instanceof Error ? error.message : "Tanuki gateway refresh failed.";
+      const message = error instanceof Error ? error.message : "Public gateway refresh failed.";
       setAgentGatewayStatus(message);
       return agentGatewaySnapshot;
     } finally {
@@ -1564,7 +1564,7 @@ export default function SpinoLLMApp({ onNotify, onSystemAction }: SpinoLLMAppPro
         setAgentGatewaySnapshot(next);
         const down = next.systems.filter((system) => system.rating === "down").length;
         const slow = next.systems.filter((system) => system.rating === "slow").length;
-        setAgentGatewayStatus(`${next.systems.length} Tanuki systems cached. ${down} down, ${slow} slow.`);
+        setAgentGatewayStatus(`${next.systems.length} public systems cached. ${down} down, ${slow} slow.`);
       }
     };
     void run();
@@ -2505,8 +2505,8 @@ export default function SpinoLLMApp({ onNotify, onSystemAction }: SpinoLLMAppPro
       if (plannedAgentGateway) {
         activeAgentGateway = await refreshAgentGateway();
         if (!activeAgentGateway.systems.length && activeAgentGateway.errors.some((error) => /token missing/i.test(error))) {
-          const responseText = compactSpinoChatReply("Tanuki gateway token is not set on this device. Open Tools > Online Intel and paste the private token once.", trimmed);
-          await streamAssistant(assistantId, responseText, "Tanuki agent gateway");
+          const responseText = compactSpinoChatReply("Public gateway token is not set on this device. Open Tools > Online Intel and paste the private token once.", trimmed);
+          await streamAssistant(assistantId, responseText, "Public agent gateway");
           queueConversationMemory(trimmed, responseText);
           automationSucceeded = false;
           automationMessage = responseText;
@@ -2514,11 +2514,11 @@ export default function SpinoLLMApp({ onNotify, onSystemAction }: SpinoLLMAppPro
         }
         if (/\b(rating|ratings|health|status|online|down|slow|check)\b/i.test(trimmed)) {
           const responseText = compactSpinoChatReply(answerFromAgentGateway(activeAgentGateway), trimmed);
-          await streamAssistant(assistantId, responseText, "Tanuki agent gateway");
+          await streamAssistant(assistantId, responseText, "Public agent gateway");
           queueConversationMemory(trimmed, responseText);
-          onNotify?.("Baloss LLM checked authorised Tanuki system ratings.", "success");
+          onNotify?.("Baloss LLM checked authorised public system ratings.", "success");
           automationSucceeded = true;
-          automationMessage = "Tanuki gateway ratings refreshed.";
+          automationMessage = "Public gateway ratings refreshed.";
           return responseText;
         }
       }
@@ -5157,7 +5157,7 @@ export default function SpinoLLMApp({ onNotify, onSystemAction }: SpinoLLMAppPro
                 <div className="min-w-0">
                   <div className="flex items-center gap-2 text-cyan-200">
                     <ShieldCheck className="w-4 h-4" />
-                    <span className="text-[10px] font-mono font-black uppercase tracking-widest">Tanuki WWW Gateway</span>
+                    <span className="text-[10px] font-mono font-black uppercase tracking-widest">Public WWW Gateway</span>
                   </div>
                   <div className="mt-1 text-[10px] text-slate-500 truncate">
                     {agentGatewaySnapshot.fetchedAt

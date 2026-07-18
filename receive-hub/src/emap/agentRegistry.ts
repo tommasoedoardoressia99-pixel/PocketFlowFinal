@@ -1,7 +1,7 @@
 import { BALOSS_DEFAULT_JOBS, type BalossDurableJob } from "../utils/balossDurableScheduler";
 import { SPINO_AGENT_NODES, SPINO_RESERVED_AGENT_SLOTS, type SpinoAgentNode } from "../utils/spinoOrchestrator";
 import { POCKETFLOW_APP_TOOLS } from "../utils/spinoTools";
-import { TANUKI_SERVER_INVENTORY } from "../data/tanukiServerInventory";
+import { PUBLIC_SERVER_INVENTORY } from "../data/publicServerInventory";
 import type { EMapEntity, EMapEntityType, EMapTrainType } from "./types";
 
 const agentType = (agent: SpinoAgentNode): EMapEntityType => {
@@ -237,8 +237,8 @@ export const createEMapRegistrySnapshot = (jobs: BalossDurableJob[] = BALOSS_DEF
       id: "server-network-hub",
       name: "Server / Network Hub",
       type: "server",
-      description: "Public/private route hub for Tanuki server, relay, API and monitor surfaces.",
-      sourceFile: "receive-hub/src/data/tanukiServerInventory.ts",
+      description: "Public/private route hub for public server, relay, API and monitor surfaces.",
+      sourceFile: "receive-hub/src/data/publicServerInventory.ts",
       status: "idle",
       lineId: "server",
       avatarId: "avatar-server",
@@ -337,13 +337,13 @@ export const createEMapRegistrySnapshot = (jobs: BalossDurableJob[] = BALOSS_DEF
     });
   }
 
-  for (const service of TANUKI_SERVER_INVENTORY) {
+  for (const service of PUBLIC_SERVER_INVENTORY) {
     entities.push({
       id: `server-${service.id}`,
       name: service.label,
       type: "server",
       description: service.description,
-      sourceFile: "receive-hub/src/data/tanukiServerInventory.ts",
+      sourceFile: "receive-hub/src/data/publicServerInventory.ts",
       status: service.url ? "idle" : "offline",
       lineId: "server",
       stationId: `station-server-${service.id}`,
@@ -493,7 +493,7 @@ export const createEMapRegistrySnapshot = (jobs: BalossDurableJob[] = BALOSS_DEF
       "receive-hub/src/utils/spinoOrchestrator.ts",
       "receive-hub/src/utils/spinoTools.ts",
       "receive-hub/src/utils/balossDurableScheduler.ts",
-      "receive-hub/src/data/tanukiServerInventory.ts",
+      "receive-hub/src/data/publicServerInventory.ts",
       "receive-hub/scripts/codex-relay-server.mjs",
       "ExternalEmpowermentsController/empowerment/core.py",
     ],
