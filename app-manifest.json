@@ -1,0 +1,13 @@
+{
+  "edition": "public",
+  "branch": "codex/public/screen-relay",
+  "slug": "screen-relay",
+  "label": "Screen Relay",
+  "component": "SecondScreenApp.tsx",
+  "generatedAt": "2026-07-18T14:24:57.749Z",
+  "sourceFiles": [
+    "src/components/SecondScreenApp.tsx",
+    "src/index.css",
+    "src/types.ts"
+  ]
+}
