@@ -9,6 +9,8 @@
   --line: rgba(255, 255, 255, 0.16);
   --muted: #a7a7a7;
   --white: #fff;
+  --tech-green: #32e68a;
+  --tech-green-ink: #103b28;
 }
 
 * {
@@ -780,7 +782,7 @@ img {
   justify-content: center;
   padding: 110px max(7vw, 32px);
   color: #000;
-  background: #d8ff35;
+  background: var(--tech-green);
 }
 
 .home-cta > p {
@@ -1378,7 +1380,7 @@ img {
 }
 
 .community-option--active {
-  background: #d8ff35;
+  background: var(--tech-green);
 }
 
 .community-option > div {
@@ -1492,7 +1494,7 @@ img {
 }
 
 .community-live__row > span {
-  color: #d8ff35;
+  color: var(--tech-green);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 10px;
   letter-spacing: 0.12em;
@@ -1509,7 +1511,7 @@ img {
 }
 
 .community-live__row:hover svg {
-  color: #d8ff35;
+  color: var(--tech-green);
   transform: translateX(5px);
 }
 
@@ -1610,7 +1612,7 @@ img {
 
 .github-ball:hover,
 .github-ball:focus-visible {
-  outline: 4px solid #d8ff35;
+  outline: 4px solid var(--tech-green);
   outline-offset: 5px;
 }
 
@@ -1631,7 +1633,7 @@ img {
   margin-top: 60px;
   padding: 9px 12px;
   color: #000;
-  background: #d8ff35;
+  background: var(--tech-green);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 10px;
   font-weight: 800;
@@ -1659,7 +1661,7 @@ img {
   gap: 7vw;
   padding: 130px max(7vw, 32px);
   color: #000;
-  background: #d8ff35;
+  background: var(--tech-green);
 }
 
 .contest-brief__lead h2 {
@@ -1670,7 +1672,7 @@ img {
 
 .contest-brief__lead p {
   max-width: 580px;
-  color: #3a4212;
+  color: var(--tech-green-ink);
   font-size: 18px;
   line-height: 1.55;
 }
@@ -1769,7 +1771,7 @@ img {
 .campaign-page__intro small {
   display: block;
   margin-top: 30px;
-  color: #d8ff35;
+  color: var(--tech-green);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 10px;
   letter-spacing: 0.1em;
@@ -1919,7 +1921,7 @@ img {
   width: 18px;
   height: 18px;
   margin: 1px 0 0;
-  accent-color: #d8ff35;
+  accent-color: var(--tech-green);
 }
 
 .admin-page {

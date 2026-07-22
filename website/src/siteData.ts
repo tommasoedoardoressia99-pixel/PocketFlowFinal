@@ -135,7 +135,7 @@ export const systems: SystemPage[] = [
     category: "Phone-to-computer bridge",
     statement: "Carry the control surface. Leave the compute where it belongs.",
     description: "A relay cockpit for coordinating phone and desktop workflows, reviewing connection state, and handing work between surfaces.",
-    accent: "#a78bfa",
+    accent: "#78c8ff",
     image: "/apps/devices/relay.png",
     appId: "relay",
     branch: "codex/public/codex-relay",
