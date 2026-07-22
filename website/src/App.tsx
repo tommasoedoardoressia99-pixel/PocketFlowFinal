@@ -324,7 +324,7 @@ function HomePage({ path, navigate }: { path: string; navigate: (path: string) =
           <h2>Useful intelligence should not require expensive hardware, a permanent cloud connection, or someone else’s workflow.</h2>
         </div>
         <div className="democracy-band__metrics" data-reveal>
-          <div><strong>12</strong><span>public systems</span></div>
+          <div><strong>2</strong><span>new every month</span></div>
           <div><strong>1</strong><span>shared spine</span></div>
           <div><strong>Any</strong><span>spare Android</span></div>
         </div>
