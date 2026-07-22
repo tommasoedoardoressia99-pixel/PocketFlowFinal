@@ -33,7 +33,7 @@ import {
   Users,
   X,
 } from "lucide-react";
-import { CSSProperties, FormEvent, ReactNode, useEffect, useMemo, useState } from "react";
+import { CSSProperties, FormEvent, ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { githubBase, systemBySlug, systems, type SystemPage } from "./siteData";
 
 const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || "hello@example.com";
@@ -539,17 +539,161 @@ function SystemDetailPage({ system, path, navigate }: { system: SystemPage; path
 }
 
 function GithubBounce() {
+  const runwayRef = useRef<HTMLElement>(null);
+  const ballRef = useRef<HTMLAnchorElement>(null);
+  const ballBodyRef = useRef<HTMLSpanElement>(null);
+  const wakeRef = useRef<() => void>(() => undefined);
+
+  useEffect(() => {
+    const runway = runwayRef.current;
+    const ball = ballRef.current;
+    const ballBody = ballBodyRef.current;
+    if (!runway || !ball || !ballBody) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const random = (minimum: number, maximum: number) => minimum + Math.random() * (maximum - minimum);
+    let frame = 0;
+    let lastTime = 0;
+    let activated = false;
+    let sleeping = true;
+    let x = 0;
+    let y = 0;
+    let velocityX = 0;
+    let velocityY = 0;
+    let rotation = 0;
+    let angularVelocity = 0;
+    let squash = 1;
+    let bounceCount = 0;
+    let bounceTarget = 7;
+    let maximumX = 0;
+
+    const measure = () => {
+      maximumX = Math.max(0, runway.clientWidth - ball.offsetLeft - ball.offsetWidth - 24);
+      x = Math.min(Math.max(0, x), maximumX);
+    };
+
+    const render = () => {
+      ball.style.transform = `translate3d(${x.toFixed(2)}px, ${(-y).toFixed(2)}px, 0)`;
+      ballBody.style.transform = `rotate(${rotation.toFixed(2)}deg) scaleX(${(2 - squash).toFixed(3)}) scaleY(${squash.toFixed(3)})`;
+    };
+
+    const settle = () => {
+      y = 0;
+      velocityY = 0;
+      if (Math.abs(velocityX) < 7) velocityX = 0;
+      if (Math.abs(angularVelocity) < 8) angularVelocity = 0;
+    };
+
+    const tick = (time: number) => {
+      const elapsed = lastTime ? Math.min((time - lastTime) / 1000, 0.032) : 1 / 60;
+      lastTime = time;
+      const steps = Math.max(1, Math.ceil(elapsed / 0.008));
+      const step = elapsed / steps;
+
+      for (let index = 0; index < steps; index += 1) {
+        velocityY -= 2380 * step;
+        velocityX *= Math.exp(-0.08 * step);
+        y += velocityY * step;
+        x += velocityX * step;
+        rotation += angularVelocity * step;
+        squash += (1 - squash) * Math.min(1, 14 * step);
+
+        if (x <= 0 || x >= maximumX) {
+          x = Math.min(Math.max(0, x), maximumX);
+          velocityX *= -random(0.68, 0.9);
+          angularVelocity = velocityX * random(0.55, 0.82);
+        }
+
+        if (y <= 0) {
+          const impact = Math.max(0, -velocityY);
+          y = 0;
+          if (impact > 105) {
+            const energyLoss = bounceCount >= bounceTarget
+              ? random(0.08, 0.18)
+              : random(0.5, 0.73) * Math.max(0.58, 1 - bounceCount * 0.045);
+            const rebound = impact * energyLoss;
+            if (rebound > 62) {
+              velocityY = rebound;
+              velocityX += random(-105, 105);
+              angularVelocity = velocityX * random(0.52, 0.78);
+              squash = Math.max(0.78, 0.91 - Math.min(0.12, impact / 9000));
+              bounceCount += 1;
+            } else {
+              settle();
+            }
+          } else {
+            settle();
+          }
+
+          velocityX *= Math.exp(-7.5 * step);
+          angularVelocity *= Math.exp(-6 * step);
+        }
+      }
+
+      render();
+      if (y === 0 && velocityY === 0 && Math.abs(velocityX) < 7 && Math.abs(angularVelocity) < 8) {
+        sleeping = true;
+        frame = 0;
+        return;
+      }
+      frame = window.requestAnimationFrame(tick);
+    };
+
+    const launch = (dropFromTop: boolean) => {
+      measure();
+      if (frame) window.cancelAnimationFrame(frame);
+      bounceCount = 0;
+      bounceTarget = Math.floor(random(5, 10));
+      x = dropFromTop ? random(maximumX * 0.08, maximumX * 0.82) : x;
+      y = dropFromTop ? Math.max(240, runway.clientHeight - ball.offsetHeight - 90) : 2;
+      velocityX = random(150, 390) * (Math.random() > 0.5 ? 1 : -1);
+      velocityY = dropFromTop ? random(-30, 50) : random(620, 920);
+      angularVelocity = velocityX * random(0.55, 0.78);
+      squash = 1;
+      sleeping = false;
+      lastTime = performance.now();
+      render();
+      frame = window.requestAnimationFrame(tick);
+    };
+
+    measure();
+    x = maximumX * 0.56;
+    render();
+    wakeRef.current = () => {
+      if (!reducedMotion && sleeping) launch(false);
+    };
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting || activated) return;
+      activated = true;
+      observer.unobserve(runway);
+      if (!reducedMotion) launch(true);
+    }, { threshold: 0.28 });
+    observer.observe(runway);
+
+    const resize = () => { measure(); render(); };
+    window.addEventListener("resize", resize);
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("resize", resize);
+      wakeRef.current = () => undefined;
+    };
+  }, []);
+
   return (
-    <section className="github-runway" id="work-with-us" aria-label="Work with us on GitHub">
+    <section ref={runwayRef} className="github-runway" id="work-with-us" aria-label="Work with us on GitHub">
       <div className="github-runway__copy">
         <span className="section-label">Work with us</span>
         <h2>Build in public.<br />Move the system forward.</h2>
         <p>Follow the source, fork an idea, or bring something entirely your own.</p>
       </div>
       <div className="github-runway__track" aria-hidden="true"><span /></div>
-      <a className="github-ball" href={githubUrl} target="_blank" rel="noreferrer" aria-label="Open PocketFlow on GitHub">
-        <Github />
-        <span>GitHub</span>
+      <a ref={ballRef} className="github-ball" href={githubUrl} target="_blank" rel="noreferrer" aria-label="Open PocketFlow on GitHub" onPointerEnter={() => wakeRef.current()} onFocus={() => wakeRef.current()}>
+        <span ref={ballBodyRef} className="github-ball__body">
+          <Github />
+          <span className="github-ball__label">GitHub</span>
+        </span>
       </a>
     </section>
   );

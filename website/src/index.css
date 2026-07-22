@@ -1542,15 +1542,25 @@ img {
   bottom: 43px;
   width: clamp(116px, 11vw, 164px);
   aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  border: 3px solid #000;
+  display: block;
   border-radius: 50%;
   color: #fff;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+.github-ball__body {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 3px solid #000;
+  border-radius: 50%;
   background: #050505;
   box-shadow: inset -16px -18px 0 #1f1f1f, 0 20px 0 rgba(0, 0, 0, 0.12);
-  animation: github-ball-run 10s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
   transform-origin: center;
+  will-change: transform;
 }
 
 .github-ball svg {
@@ -1558,7 +1568,7 @@ img {
   height: 44%;
 }
 
-.github-ball span {
+.github-ball__label {
   position: absolute;
   bottom: 21%;
   color: #aaa;
@@ -1570,21 +1580,8 @@ img {
 
 .github-ball:hover,
 .github-ball:focus-visible {
-  animation-play-state: paused;
   outline: 4px solid #d8ff35;
   outline-offset: 5px;
-}
-
-@keyframes github-ball-run {
-  0% { translate: 0 0; rotate: 0deg; }
-  12% { translate: 10vw -105px; rotate: 78deg; }
-  24% { translate: 20vw 0; rotate: 156deg; }
-  38% { translate: 32vw -150px; rotate: 248deg; }
-  52% { translate: 44vw 0; rotate: 340deg; }
-  66% { translate: 56vw -84px; rotate: 432deg; }
-  78% { translate: 66vw 0; rotate: 510deg; }
-  90% { translate: 76vw -54px; rotate: 588deg; }
-  100% { translate: calc(88vw - 164px) 0; rotate: 660deg; }
 }
 
 .contest-hero {
