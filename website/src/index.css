@@ -92,18 +92,16 @@ img {
 }
 
 .brand__mark {
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  background: #fff;
-  color: #000;
-  border-radius: 6px;
-  font-weight: 950;
+  width: 44px;
+  height: 44px;
+  display: block;
+  flex: 0 0 auto;
 }
 
-.brand__mark span {
-  transform: translateY(-1px);
+.brand__mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .brand__word {
@@ -113,10 +111,8 @@ img {
 }
 
 .brand--compact .brand__mark {
-  width: 30px;
-  height: 30px;
-  font-size: 14px;
-  border-radius: 4px;
+  width: 34px;
+  height: 34px;
 }
 
 .brand--compact .brand__word {
@@ -2146,9 +2142,8 @@ img {
 }
 
 .footer__top .brand__mark {
-  width: 64px;
-  height: 64px;
-  font-size: 28px;
+  width: 76px;
+  height: 76px;
 }
 
 .footer__top .brand__word {
@@ -2803,9 +2798,8 @@ img {
   }
 
   .footer__top .brand__mark {
-    width: 46px;
-    height: 46px;
-    font-size: 20px;
+    width: 54px;
+    height: 54px;
   }
 
   .footer__top .brand__word {

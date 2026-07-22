@@ -173,7 +173,7 @@ function AgentBrief({ context }: { context: AgentContext }) {
 function Brand({ compact = false }: { compact?: boolean }) {
   return (
     <span className={`brand ${compact ? "brand--compact" : ""}`} aria-label="PocketFlow">
-      <span className="brand__mark" aria-hidden="true"><span>P</span></span>
+      <span className="brand__mark" aria-hidden="true"><img src="/pocketflow-mark.png" alt="" /></span>
       <span className="brand__word">PocketFlow</span>
     </span>
   );
