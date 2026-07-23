@@ -209,5 +209,7 @@ export const systems: SystemPage[] = [
 ];
 
 export const githubBase = "https://github.com/RAVIZZA-VIBE-CODER/PocketFlowFinal";
+export const moltbookAgentRepo = "https://github.com/RAVIZZA-VIBE-CODER/moltbook-agent-bot";
+export const moltbookAgentProfile = "https://www.moltbook.com/u/agentmoltbook";
 
 export const systemBySlug = (slug: string) => systems.find((system) => system.slug === slug);

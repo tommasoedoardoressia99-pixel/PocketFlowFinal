@@ -34,7 +34,7 @@ import {
   X,
 } from "lucide-react";
 import { CSSProperties, FormEvent, ReactNode, useEffect, useMemo, useRef, useState } from "react";
-import { githubBase, systemBySlug, systems, type SystemPage } from "./siteData";
+import { githubBase, moltbookAgentProfile, moltbookAgentRepo, systemBySlug, systems, type SystemPage } from "./siteData";
 
 const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || "hello@example.com";
 const contactEndpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT || "";
@@ -42,7 +42,7 @@ const githubUrl = import.meta.env.VITE_GITHUB_URL || githubBase;
 const xUrl = import.meta.env.VITE_X_URL || "https://x.com/TanukiLabsAI";
 const demoBaseUrl = import.meta.env.VITE_DEMO_BASE_URL || "";
 const communityEndpoint = import.meta.env.VITE_COMMUNITY_API_BASE || "/api/community";
-const moltbookProfileUrl = "https://www.moltbook.com/u/agentmoltbook";
+const moltbookProfileUrl = moltbookAgentProfile;
 
 type AgentContext = {
   page: string;
@@ -289,6 +289,7 @@ function Header({ path, navigate }: { path: string; navigate: (path: string) => 
         <SiteLink to="/" navigate={navigate} className="site-header__brand"><Brand compact /></SiteLink>
         <nav className="desktop-nav" aria-label="Primary navigation">
           <SiteLink to="/systems" navigate={navigate} className={path.startsWith("/systems") ? "is-active" : ""}>Systems</SiteLink>
+          <SiteLink to="/moltbook-agent" navigate={navigate} className={path === "/moltbook-agent" ? "is-active" : ""}>Moltbook agent</SiteLink>
           <a href="/#philosophy" onClick={(event) => {
             if (path === "/") return;
             event.preventDefault();
@@ -307,6 +308,7 @@ function Header({ path, navigate }: { path: string; navigate: (path: string) => 
       {open && (
         <div className="mobile-menu">
           <SiteLink to="/systems" navigate={navigate} onClick={() => setOpen(false)}>Systems <ArrowRight /></SiteLink>
+          <SiteLink to="/moltbook-agent" navigate={navigate} onClick={() => setOpen(false)}>Moltbook agent <ArrowRight /></SiteLink>
           <SiteLink to="/" navigate={navigate} onClick={() => setOpen(false)}>Why PocketFlow <ArrowRight /></SiteLink>
           <SiteLink to="/community" navigate={navigate} onClick={() => setOpen(false)}>Join our community <ArrowRight /></SiteLink>
           <SiteLink to="/contact" navigate={navigate} onClick={() => setOpen(false)}>Contact <ArrowRight /></SiteLink>
@@ -328,6 +330,7 @@ function Footer({ navigate }: { navigate: (path: string) => void }) {
         <div>
           <span>Explore</span>
           <SiteLink to="/systems" navigate={navigate}>All systems</SiteLink>
+          <SiteLink to="/moltbook-agent" navigate={navigate}>Moltbook agent</SiteLink>
           <SiteLink to="/community" navigate={navigate}>Join our community</SiteLink>
           <SiteLink to="/community/contest" navigate={navigate}>Monthly contest</SiteLink>
           <SiteLink to="/contact" navigate={navigate}>Contact</SiteLink>
@@ -569,6 +572,66 @@ function SystemsPage({ path, navigate }: { path: string; navigate: (path: string
           </SiteLink>
         ))}
       </section>
+    </PageShell>
+  );
+}
+
+function MoltbookAgentPage({ path, navigate }: { path: string; navigate: (path: string) => void }) {
+  const context: AgentContext = {
+    page: "Moltbook Agent Bot",
+    summary: "A public-safe template for a curious, supervised AI publishing agent that learns from NewsFlow briefs and keeps its platform actions behind explicit adapters.",
+    facts: [
+      "The public package is also the reference implementation for the Multiplic agent concept.",
+      "News, curiosity, questions, community observations, and project notes are mixed instead of repeated in blocks.",
+      "Missing model or platform adapters are reported honestly instead of creating fake success states.",
+      "No credentials, private contacts, personal history, or private endpoints are included.",
+    ],
+    links: { repository: moltbookAgentRepo, publicProfile: moltbookAgentProfile, pocketflow: githubUrl },
+  };
+  return (
+    <PageShell path={path} navigate={navigate} context={context}>
+      <article className="moltbook-agent-page">
+        <section className="moltbook-agent-hero">
+          <div>
+            <SiteLink to="/systems/notebook-agent" navigate={navigate} className="back-link"><ArrowLeft /> Notebook / Moltbook system</SiteLink>
+            <span className="section-label">Public agent template / Multiplic</span>
+            <h1>A curious agent,<br /><strong>not a content loop.</strong></h1>
+            <p>NewsFlow briefs become context. Context becomes an original observation, a useful question, or a project note. A review queue keeps the human in control before any platform action.</p>
+            <div className="hero-actions">
+              <a href={moltbookAgentRepo} target="_blank" rel="noreferrer" className="button button--moltbook">View public repository <Github /></a>
+              <a href={moltbookAgentProfile} target="_blank" rel="noreferrer" className="button button--ghost">Visit the public agent <ExternalLink /></a>
+            </div>
+          </div>
+          <div className="moltbook-agent-hero__orb" aria-hidden="true"><span>M</span><i>01</i></div>
+        </section>
+
+        <section className="moltbook-agent-flow" data-reveal>
+          <div className="section-label">Actual build architecture</div>
+          <div className="moltbook-agent-flow__diagram">
+            <div><strong>NewsFlow</strong><span>public briefs</span></div><ArrowRight />
+            <div><strong>Learning memory</strong><span>sources + context</span></div><ArrowRight />
+            <div><strong>Topic mixer</strong><span>varied queue</span></div><ArrowRight />
+            <div><strong>Human review</strong><span>safe drafts</span></div>
+          </div>
+          <p>Publishing, comments, follows, and feed reads stay behind explicit platform ports. The template can run offline in demo mode and returns <code>needs_model</code> or <code>needs_adapter</code> when a live capability has not been configured.</p>
+        </section>
+
+        <section className="moltbook-agent-grid">
+          {[
+            ["01", "Mixed by design", "AI news, curiosity, questions, community observations, and PocketFlow updates are interleaved so the agent does not sound like a repeating announcement feed."],
+            ["02", "Learns from sources", "NewsFlow remains the source layer. Links, tags, summaries, and the reason a source matters stay attached to the draft context."],
+            ["03", "Supervised actions", "A local model can prepare drafts, while the platform adapter remains an opt-in boundary for publishing, commenting, following, and reading."],
+            ["04", "Public-safe", "The repository shows how the system works without exposing personal credentials, private contacts, server routes, or private history."],
+          ].map(([number, title, copy]) => (
+            <div key={number} data-reveal><span>{number}</span><h2>{title}</h2><p>{copy}</p></div>
+          ))}
+        </section>
+
+        <section className="moltbook-agent-cta" data-reveal>
+          <div><span className="section-label">Meet the example</span><h2>Follow the agent<br />in public.</h2></div>
+          <div><p><strong>agentmoltbook</strong> is the public example profile for the concept. The repo is the reusable build; the profile is the visible experiment.</p><a href={moltbookAgentProfile} target="_blank" rel="noreferrer" className="text-link">Open the profile <ExternalLink /></a></div>
+        </section>
+      </article>
     </PageShell>
   );
 }
@@ -1439,6 +1502,7 @@ export default function App() {
 
   if (path === "/") return <HomePage path={path} navigate={navigate} />;
   if (path === "/systems") return <SystemsPage path={path} navigate={navigate} />;
+  if (path === "/moltbook-agent") return <MoltbookAgentPage path={path} navigate={navigate} />;
   if (system) return <SystemDetailPage system={system} path={path} navigate={navigate} />;
   if (path === "/community") return <CommunityPage path={path} navigate={navigate} />;
   if (path === "/community/contest") return <ContestPage path={path} navigate={navigate} />;
