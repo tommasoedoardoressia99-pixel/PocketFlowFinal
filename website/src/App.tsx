@@ -87,8 +87,9 @@ type MoltbookProfileData = {
 
 const homeContext: AgentContext = {
   page: "PocketFlow home",
-  summary: "PocketFlow is a phone-first, local-first AI operating shell by Tanuki Labs. It turns ordinary Android phones into personal control rooms for models, automations, research, files, and team workflows.",
+  summary: "PocketFlow is a phone-first, local-first AI operating shell by Tanuki Labs for digital business cards, QR cards, event access, smart tickets, local AI automations, research, files, and team workflows.",
   facts: [
+    "PocketFlow can manage digital business cards, online business cards, QR cards, event access passes, and smart tickets.",
     "The public repository contains 12 sanitized systems.",
     "PocketFlow is designed for ordinary, reused Android hardware.",
     "Every teammate can personalize workflows while sharing one operating spine.",
@@ -179,7 +180,7 @@ function useReveal() {
 function AgentBrief({ context }: { context: AgentContext }) {
   useEffect(() => {
     const title = context.page === "PocketFlow home"
-      ? "PocketFlow | AI belongs in your pocket"
+      ? "PocketFlow | Digital business cards, QR tickets and local AI tools"
       : `${context.page} | PocketFlow`;
     const canonicalUrl = new URL(window.location.pathname, "https://pocketflow.it").toString();
     const setMeta = (selector: string, content: string) => {
@@ -226,10 +227,29 @@ function AgentBrief({ context }: { context: AgentContext }) {
   );
 }
 
+const seoUseCases = [
+  {
+    title: "Digital business cards",
+    copy: "Create an online business card that keeps useful links, social profiles, contact details, documents, and quick handoff notes in one shareable PocketFlow card.",
+  },
+  {
+    title: "QR cards and quick QR tools",
+    copy: "Turn menus, portfolios, passwords, instructions, forms, and saved links into clean QR cards that can be opened, edited, and shared from the phone.",
+  },
+  {
+    title: "Event tickets and access",
+    copy: "Keep QR event tickets, event access passes, check-in links, guest notes, and event details together so entry and follow-up are easier to manage.",
+  },
+  {
+    title: "Local AI control",
+    copy: "Use the same phone shell for notes, research, newsletters, relays, archive work, and local model actions without turning every task into a cloud dashboard.",
+  },
+];
+
 function Brand({ compact = false }: { compact?: boolean }) {
   return (
     <span className={`brand ${compact ? "brand--compact" : ""}`} aria-label="PocketFlow">
-      <span className="brand__mark" aria-hidden="true"><img src="/pocketflow-mark.webp" alt="" width="152" height="152" /></span>
+      <span className="brand__mark" aria-hidden="true"><img src="/pocketflow-mark-96.webp" alt="" width="96" height="96" /></span>
       <span className="brand__word">PocketFlow</span>
     </span>
   );
@@ -412,7 +432,7 @@ function HomePage({ path, navigate }: { path: string; navigate: (path: string) =
           </div>
         </div>
         <div className="home-hero__device">
-          <img className="home-hero__network" src="/hero-pocketflow-network.webp" alt="PocketFlow network connecting a collection of phone-based AI workspaces" width="1536" height="1024" fetchPriority="high" />
+          <img className="home-hero__network" src="/hero-pocketflow-network-900.webp" srcSet="/hero-pocketflow-network-900.webp 900w, /hero-pocketflow-network.webp 1536w" sizes="(max-width: 840px) 100vw, 52vw" alt="PocketFlow network connecting a collection of phone-based AI workspaces" width="900" height="600" fetchPriority="high" />
         </div>
         <a href="#philosophy" className="scroll-cue" aria-label="Scroll to learn more"><ArrowDown /></a>
       </section>
@@ -421,6 +441,23 @@ function HomePage({ path, navigate }: { path: string; navigate: (path: string) =
         <p className="section-label" data-reveal>Why we built it</p>
         <h2 data-reveal>The cloud made intelligence scalable.<br /><strong>We make it personal.</strong></h2>
         <p className="manifesto__copy" data-reveal>PocketFlow turns ordinary Android phones into local AI control rooms. Models, automations, files, research, relays, and daily work live in one system that belongs to the person holding it.</p>
+      </section>
+
+      <section className="seo-use-cases" aria-labelledby="seo-use-cases-title">
+        <div className="seo-use-cases__intro" data-reveal>
+          <span className="section-label">What people search for</span>
+          <h2 id="seo-use-cases-title">Digital business cards, QR tickets, and event access should not live in ten separate tools.</h2>
+          <p>PocketFlow brings online business cards, smart QR cards, event tickets, access passes, and local AI workflows into one phone-first system.</p>
+        </div>
+        <div className="seo-use-cases__grid">
+          {seoUseCases.map((useCase, index) => (
+            <article className="seo-use-card" key={useCase.title} data-reveal>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{useCase.title}</h3>
+              <p>{useCase.copy}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="democracy-band">

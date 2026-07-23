@@ -422,6 +422,74 @@ img {
   font-weight: 520;
 }
 
+.seo-use-cases {
+  padding: 118px max(7vw, 32px);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(50, 230, 138, 0.22), transparent 32%),
+    linear-gradient(135deg, #050505, #101610 58%, #060706);
+  border-block: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.seo-use-cases__intro {
+  max-width: 1040px;
+  margin-bottom: 42px;
+}
+
+.seo-use-cases__intro h2 {
+  max-width: 1080px;
+  margin: 16px 0 22px;
+  font-size: clamp(38px, 6.5vw, 88px);
+  line-height: 0.95;
+  letter-spacing: -0.07em;
+}
+
+.seo-use-cases__intro p {
+  max-width: 760px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: clamp(18px, 2vw, 25px);
+  line-height: 1.32;
+}
+
+.seo-use-cases__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.seo-use-card {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 26px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+    rgba(255, 255, 255, 0.035);
+}
+
+.seo-use-card span {
+  color: var(--tech-green);
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.22em;
+}
+
+.seo-use-card h3 {
+  margin: 78px 0 14px;
+  font-size: clamp(23px, 2.4vw, 34px);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.seo-use-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.5;
+}
+
 .democracy-band {
   padding: 150px max(7vw, 32px) 80px;
   background: #050505;
@@ -2539,6 +2607,10 @@ img {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .seo-use-cases__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .system-hero {
     grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
   }
@@ -2604,6 +2676,7 @@ img {
   }
 
   .manifesto,
+  .seo-use-cases,
   .democracy-band,
   .hardware-story,
   .team-story,
@@ -2894,12 +2967,14 @@ img {
   }
 
   .manifesto h2,
+  .seo-use-cases__intro h2,
   .team-story h2,
   .systems-preview h2,
   .hardware-story h2 {
     font-size: 46px;
   }
 
+  .seo-use-cases,
   .democracy-band,
   .hardware-story,
   .team-story,
@@ -2908,6 +2983,14 @@ img {
   .system-workflow {
     padding-top: 100px;
     padding-bottom: 100px;
+  }
+
+  .seo-use-cases__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .seo-use-card {
+    min-height: 250px;
   }
 
   .hardware-story__object {
